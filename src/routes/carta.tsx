@@ -13,7 +13,7 @@ export const Route = createFileRoute("/carta")({
       {
         property: "og:description",
         content:
-          "Fundamentação estratégica do ETT: Impact-to-Earn, MRV e blockchain permissionada.",
+          "Fundamentação estratégica do ETT: Impact-to-Earn, MRV, blockchain permissionada e Banco Central Verde.",
       },
     ],
   }),
@@ -29,7 +29,7 @@ function CartaPage() {
             to="/"
             className="text-sm font-medium text-slate-600 hover:text-[#008080]"
           >
-            ← Voltar à página
+            ← Voltar à proposta
           </Link>
           <button
             onClick={() => window.print()}
@@ -56,33 +56,32 @@ function CartaPage() {
         </div>
 
         <article className="bg-white rounded-2xl border border-slate-200 p-8 md:p-12 shadow-sm space-y-5 leading-relaxed text-slate-700">
-          <p className="font-semibold text-slate-900">Prezado(a) Senhor(a),</p>
+          <p className="font-semibold text-slate-900">
+            Prezado(a) Senhor(a),
+          </p>
 
           <p>
             Com os meus melhores cumprimentos, dirijo-me a Vossa
             Excelência/Senhor(a) com uma proposta que redefine a relação entre
             prosperidade econômica e sustentabilidade ambiental. Em um cenário
-            global onde os danos ambientais atingem a cifra alarmante de US$ 5,7
-            trilhões anuais — um custo superior ao PIB da maioria das nações
-            <sup>[1]</sup> — torna-se imperativo transcender abordagens
-            tradicionais e adotar soluções que transformem este passivo em um
-            ativo estratégico.
+            global onde os danos ambientais atingem a cifra alarmante de{" "}
+            <strong>US$ 5,7 trilhões anuais</strong> — um custo superior ao PIB
+            da maioria das nações<sup>[1]</sup> — torna-se imperativo
+            transcender abordagens tradicionais e adotar soluções que
+            transformem este passivo em um ativo estratégico.
           </p>
 
           <p>
             Tenho a honra de apresentar o conceito do{" "}
             <strong>Eco-Token de Transição (ETT)</strong>, um modelo inovador de
-            engenharia econômica e governança que utiliza a tecnologia
-            blockchain para catalisar uma verdadeira revolução verde. O ETT não
-            é apenas uma ideia; é um sistema completo e pragmático desenhado
-            para:
+            engenharia econômica e governança que utiliza a tecnologia{" "}
+            <em>blockchain</em> para catalisar uma verdadeira revolução verde. O
+            ETT não é apenas uma ideia; é um{" "}
+            <strong>sistema completo e pragmático</strong> desenhado para:
           </p>
 
-          <div className="space-y-4 pl-4 border-l-4 border-[#008080]/30">
-            <p>
-              <strong className="text-slate-900">
-                Democratizar a Sustentabilidade:
-              </strong>{" "}
+          <ol className="space-y-4 pl-0 list-none">
+            <Item n={1} titulo="Democratizar a Sustentabilidade">
               Ao contrário dos selos tradicionais, que impõem barreiras de custo
               e burocracia, o ETT permite que pequenos e médios produtores
               (PMEs) sejam recompensados financeiramente por cada ação ambiental
@@ -90,35 +89,60 @@ function CartaPage() {
               industrial). Isso cria um modelo <em>"Impact-to-Earn"</em> que
               inclui a base da cadeia produtiva, garantindo que a transição
               verde seja justa e inclusiva.
-            </p>
-            <p>
-              <strong className="text-slate-900">
-                Garantir Rastreabilidade e Integridade Inquestionáveis:
-              </strong>{" "}
-              Através de uma blockchain permissionada, Oráculos Descentralizados
-              e sensores de Internet das Coisas (IoT), o ETT assegura a
-              verificação em tempo real do impacto ambiental. Cada token
-              representa uma ação real e auditável, combatendo eficazmente o
-              greenwashing e estabelecendo um novo padrão de transparência na
-              cadeia de valor.
-            </p>
-          </div>
+            </Item>
+            <Item n={2} titulo="Garantir Rastreabilidade e Integridade Inquestionáveis">
+              Através de uma <em>blockchain</em> permissionada, Oráculos
+              Descentralizados e sensores de Internet das Coisas (IoT), o ETT
+              assegura a verificação em tempo real do impacto ambiental. Cada
+              token representa uma ação real e auditável, combatendo eficazmente
+              o <em>greenwashing</em> e estabelecendo um novo padrão de
+              transparência na cadeia de suprimentos.
+            </Item>
+            <Item n={3} titulo="Promover Estabilidade Econômica e Prevenir Especulação">
+              Um <strong>"Banco Central Verde" (BCV)</strong> multissetorial
+              atuará como guardião do sistema, controlando a emissão de tokens
+              lastreados no custo real da regeneração ambiental. Mecanismos
+              antiespeculação, como Tokens Soulbound e tetos de acumulação,
+              garantirão que o ETT mantenha sua função de moeda de utilidade e
+              impacto, protegendo-o da volatilidade e da manipulação por
+              "baleias".
+            </Item>
+            <Item n={4} titulo="Integrar o Estado como Validador e Impulsionador">
+              A proposta inclui a integração do ETT com a Nota Fiscal Eletrônica
+              (NF-e) e sistemas tributários, permitindo o cruzamento de dados
+              para prevenir evasão fiscal e garantir que incentivos cheguem a
+              quem realmente gera impacto. Além disso, a cooperação
+              internacional e a criação de <em>"Green Lanes"</em> aduaneiras são
+              previstas para facilitar o comércio de produtos sustentáveis.
+            </Item>
+          </ol>
 
           <p>
-            Coloco-me à inteira disposição para apresentar pessoalmente a
-            arquitetura completa do projeto, os indicadores de MRV propostos e o
-            cronograma de implantação do piloto no Sul de Minas Gerais.
+            O Eco-Token de Transição representa uma oportunidade sem
+            precedentes para transformar a sustentabilidade de um custo em um{" "}
+            <strong>diferencial competitivo e um motor de lucratividade</strong>
+            . Para empresas, significa redução de riscos, acesso a capital ESG e
+            fortalecimento da marca. Para governos, implica em maior eficiência
+            na gestão ambiental, redução de gastos públicos e liderança na
+            economia verde.
+          </p>
+
+          <p>
+            Este é o momento de liderar a transição para uma nova era de valor
+            e impacto, onde a prosperidade econômica e a regeneração ambiental
+            caminham lado a lado.
+          </p>
+
+          <p>
+            Coloco-me à disposição para apresentar os detalhes deste modelo e
+            discutir como ele pode ser implementado em sua esfera de atuação.
           </p>
 
           <p className="pt-4">
-            Respeitosamente,
+            Atenciosamente,
             <br />
-            <strong className="text-slate-900">
-              Marcos Fernando C. dos Santos
-            </strong>
-            <br />
-            <span className="text-sm text-slate-500">
-              Pouso Alegre - MG · WhatsApp: (35) 99934-0088
+            <span className="text-slate-500 italic">
+              Documento de apresentação institucional
             </span>
           </p>
 
@@ -130,7 +154,7 @@ function CartaPage() {
               [1] Schrijver, I., Hoekstra, R., & Behrens, P. (2026).
               Environmental damages of the top ten percent consumers exceed
               global climate and biodiversity funding gaps.{" "}
-              <em>Communications Sustainability</em>, 1, Article 94.{" "}
+              <em>Communications Sustainability</em>, 1, Article number: 94.{" "}
               <a
                 href="https://www.nature.com/articles/s44458-026-00079-x"
                 target="_blank"
@@ -144,5 +168,27 @@ function CartaPage() {
         </article>
       </main>
     </div>
+  );
+}
+
+function Item({
+  n,
+  titulo,
+  children,
+}: {
+  n: number;
+  titulo: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <li className="flex gap-4 pl-4 border-l-4 border-[#008080]/30">
+      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#008080] text-white text-sm font-bold flex items-center justify-center">
+        {n}
+      </span>
+      <div>
+        <strong className="text-slate-900 block mb-1">{titulo}</strong>
+        <span>{children}</span>
+      </div>
+    </li>
   );
 }
