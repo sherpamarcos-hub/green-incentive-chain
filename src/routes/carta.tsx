@@ -141,8 +141,10 @@ function CartaPage() {
           <p className="pt-4">
             Atenciosamente,
             <br />
-            <span className="text-slate-500 italic">
-              Documento de apresentação institucional
+            <strong className="text-slate-900">Marcos Carvalho</strong>
+            <br />
+            <span className="text-sm text-slate-500">
+              Proponente do Eco-Token de Transição (ETT)
             </span>
           </p>
 
