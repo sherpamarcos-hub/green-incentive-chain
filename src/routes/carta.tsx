@@ -45,19 +45,15 @@ function CartaPage() {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <div className="flex items-start justify-between flex-wrap gap-4 mb-8">
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-              Documento Estratégico
-            </p>
-            <h1 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
-              Carta de Apresentação Estratégica
-            </h1>
-          </div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 border border-emerald-200">
-            ✓ Acesso Liberado
-          </span>
+        <div className="mb-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+            Documento Estratégico
+          </p>
+          <h1 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
+            Carta de Apresentação Estratégica
+          </h1>
         </div>
+
 
         <article className="bg-white rounded-2xl border border-slate-200 p-8 md:p-12 shadow-sm space-y-5 leading-relaxed text-slate-700">
           <p className="font-semibold text-slate-900">
