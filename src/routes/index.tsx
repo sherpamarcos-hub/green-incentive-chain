@@ -134,20 +134,51 @@ function PropostaPage() {
           <p className="mt-1 text-slate-300">WhatsApp: (35) 99934-0088</p>
         </section>
 
-        <section className="print:hidden mt-10 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8 text-center">
-          <h2 className="text-2xl font-bold text-slate-900">
+        <section className="print:hidden mt-10 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8">
+          <h2 className="text-2xl font-bold text-slate-900 text-center">
             Carta de Apresentação Estratégica
           </h2>
-          <p className="mt-2 text-slate-600 max-w-2xl mx-auto">
-            Acesse a fundamentação completa do Eco-Token de Transição (ETT).
+          <p className="mt-2 text-slate-600 max-w-2xl mx-auto text-center">
+            Informe seu contato para acessar a fundamentação completa do
+            Eco-Token de Transição (ETT). Usaremos seu e-mail apenas para
+            retorno institucional.
           </p>
-          <Link
-            to="/carta"
-            className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#008080] text-white font-semibold hover:bg-[#006666] transition-colors"
+          <form
+            onSubmit={handleSubmit}
+            className="mt-6 max-w-xl mx-auto grid gap-3"
           >
-            Ler a Carta →
-          </Link>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Nome ou instituição (opcional)"
+              maxLength={120}
+              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#008080]"
+            />
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="seu@email.com"
+              maxLength={254}
+              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#008080]"
+            />
+            {error && (
+              <p className="text-sm text-red-600" role="alert">
+                {error}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#008080] text-white font-semibold hover:bg-[#006666] transition-colors disabled:opacity-60"
+            >
+              {submitting ? "Enviando..." : "Acessar a Carta →"}
+            </button>
+          </form>
         </section>
+
 
       </main>
     </div>
