@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+
 import { EttLogo } from "@/components/EttLogo";
 
 export const Route = createFileRoute("/")({
@@ -23,14 +23,7 @@ export const Route = createFileRoute("/")({
 });
 
 function PropostaPage() {
-  const [email, setEmail] = useState("");
 
-  function handleAccess(e: React.FormEvent) {
-    e.preventDefault();
-    // Sem backend: apenas registra no console e navega.
-    if (!email.includes("@")) return;
-    window.location.href = "/carta";
-  }
 
   return (
     <div className="min-h-screen bg-[#fcfbf8] text-slate-800 font-sans">
@@ -113,43 +106,21 @@ function PropostaPage() {
           <p className="mt-1 text-slate-300">WhatsApp: (35) 99934-0088</p>
         </section>
 
-        <section className="print:hidden mt-10 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8">
+        <section className="print:hidden mt-10 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8 text-center">
           <h2 className="text-2xl font-bold text-slate-900">
-            Acesso à Carta de Apresentação
+            Carta de Apresentação Estratégica
           </h2>
-          <p className="mt-2 text-slate-600">
-            Para acessar a fundamentação completa do projeto e detalhes
-            estruturais, insira seu e-mail institucional.
+          <p className="mt-2 text-slate-600 max-w-2xl mx-auto">
+            Acesse a fundamentação completa do Eco-Token de Transição (ETT).
           </p>
-          <form
-            onSubmit={handleAccess}
-            className="mt-5 flex flex-col sm:flex-row gap-3"
+          <Link
+            to="/carta"
+            className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#008080] text-white font-semibold hover:bg-[#006666] transition-colors"
           >
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="@email.gov.br ou empresa.com"
-              className="flex-1 px-4 py-3 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent"
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 rounded-lg bg-[#008080] text-white font-semibold hover:bg-[#006666] transition-colors"
-            >
-              Acessar Carta
-            </button>
-          </form>
-          <p className="mt-3 text-xs text-slate-500">
-            🔒 Seus dados estão protegidos.
-          </p>
-          <p className="mt-2 text-xs text-slate-400">
-            Ou acesse diretamente:{" "}
-            <Link to="/carta" className="underline hover:text-[#008080]">
-              /carta
-            </Link>
-          </p>
+            Ler a Carta →
+          </Link>
         </section>
+
       </main>
     </div>
   );
