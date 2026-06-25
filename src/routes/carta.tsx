@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { EttLogo } from "@/components/EttLogo";
 
 export const Route = createFileRoute("/carta")({
   head: () => ({
@@ -24,13 +25,16 @@ function CartaPage() {
   return (
     <div className="min-h-screen bg-[#fcfbf8] text-slate-800 font-sans">
       <header className="print:hidden border-b border-slate-200 bg-white">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link
-            to="/"
-            className="text-sm font-medium text-slate-600 hover:text-[#008080]"
-          >
-            ← Voltar à proposta
-          </Link>
+        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <EttLogo />
+            <Link
+              to="/"
+              className="text-sm font-medium text-slate-600 hover:text-[#008080]"
+            >
+              ← Voltar à proposta
+            </Link>
+          </div>
           <button
             onClick={() => window.print()}
             className="inline-flex items-center gap-2 rounded-lg bg-[#008080] px-4 py-2 text-sm font-semibold text-white hover:bg-[#006666]"
