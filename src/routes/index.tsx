@@ -25,6 +25,32 @@ export const Route = createFileRoute("/")({
 });
 
 function PropostaPage() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+    const trimmed = email.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmed)) {
+      setError("Informe um e-mail válido.");
+      return;
+    }
+    setSubmitting(true);
+    const { error: dbError } = await supabase
+      .from("leads")
+      .insert({ email: trimmed, name: name.trim() || null, source: "proposta-ett" });
+    setSubmitting(false);
+    if (dbError) {
+      setError("Não foi possível registrar agora. Tente novamente.");
+      return;
+    }
+    navigate({ to: "/carta" });
+  }
+
 
 
   return (
