@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { EttLogo } from "@/components/EttLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,9 +36,7 @@ function PropostaPage() {
     <div className="min-h-screen bg-[#fcfbf8] text-slate-800 font-sans">
       <header className="print:hidden border-b border-slate-200 bg-white">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="text-sm font-semibold tracking-wide text-[#008080]">
-            SISTEMA ETT
-          </span>
+          <EttLogo />
           <button
             onClick={() => window.print()}
             className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
