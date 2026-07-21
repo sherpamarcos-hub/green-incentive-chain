@@ -61,35 +61,120 @@ function PropostaPage() {
 
       <main className="max-w-5xl mx-auto px-6 py-12">
         {/* Hero */}
-        <section className="mb-14">
-          <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
-            Programa ETT · Versão Pública 2026
-          </p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-            Espelho de Trajetória
-            <br />e Transparência
-          </h1>
-          <p className="mt-5 text-lg text-slate-600 max-w-3xl leading-relaxed">
-            Infraestrutura pública regional que valida práticas produtivas
-            sustentáveis a partir de dados fiscais já existentes — NF-e, Nota
-            de Produtor Rural e amostragem de campo. Sem criar moeda, sem
-            novo órgão, sem custo obrigatório ao Estado no piloto.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700">
-              Sem token · sem criptoativo
-            </span>
-            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700">
-              Piloto 12 meses
-            </span>
-            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700">
-              GT-ETT: SEFAZ · Emater · Cooperativas · Academia
-            </span>
+        <section className="mb-16 relative">
+          <div className="absolute -top-8 -left-8 w-64 h-64 rounded-full bg-[#008080]/5 blur-3xl -z-0 print:hidden" />
+          <div className="relative">
+            <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
+              Programa ETT · Documento Institucional · 2026
+            </p>
+            <h1 className="mt-3 text-4xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-tight">
+              Espelho de Trajetória
+              <br />
+              <span className="text-[#008080]">e Transparência</span>
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
+              Infraestrutura pública regional que valida práticas produtivas
+              sustentáveis a partir de dados fiscais já existentes — NF-e,
+              Nota de Produtor Rural e amostragem de campo.{" "}
+              <span className="text-slate-800 font-medium">
+                Sem criar moeda, sem novo órgão, sem custo obrigatório ao
+                Estado no piloto.
+              </span>
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3 print:hidden">
+              <a
+                href="#materiais"
+                className="rounded-lg bg-[#008080] text-white text-sm font-semibold px-5 py-3 hover:bg-[#006666] transition"
+              >
+                Ler materiais públicos
+              </a>
+              <button
+                onClick={() => {
+                  setShowForm(true);
+                  setTimeout(
+                    () =>
+                      document
+                        .getElementById("solicitar")
+                        ?.scrollIntoView({ behavior: "smooth" }),
+                    50,
+                  );
+                }}
+                className="rounded-lg border border-slate-300 bg-white text-slate-800 text-sm font-semibold px-5 py-3 hover:bg-slate-50 transition"
+              >
+                Solicitar acesso técnico
+              </button>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2 text-xs">
+              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
+                Sem token · sem criptoativo
+              </span>
+              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
+                Piloto 12 meses
+              </span>
+              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
+                GT-ETT: SEFAZ · Emater · Cooperativas · Academia
+              </span>
+            </div>
           </div>
         </section>
 
+        {/* Como Funciona — visual */}
+        <section className="mb-16">
+          <div className="mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
+              Como funciona
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-1">
+              Quatro passos, dados já existentes
+            </h2>
+            <p className="mt-2 text-slate-600 max-w-3xl">
+              O ETT não cria nova burocracia: reaproveita o que o produtor
+              já emite e o que o Estado já recebe.
+            </p>
+          </div>
+          <ol className="grid gap-4 md:grid-cols-4">
+            {[
+              {
+                n: "01",
+                t: "Ação sustentável",
+                d: "Produtor adota prática elegível (adubação verde, plantio direto, manejo integrado, etc.).",
+              },
+              {
+                n: "02",
+                t: "Comprovação fiscal",
+                d: "A prática é refletida em NF-e ou Nota de Produtor Rural — sem formulário extra.",
+              },
+              {
+                n: "03",
+                t: "Validação GT-ETT",
+                d: "Grupo Técnico (SEFAZ · Emater · Cooperativas · Academia) valida por amostragem.",
+              },
+              {
+                n: "04",
+                t: "ETT Espelho",
+                d: "Trajetória do produtor é registrada de forma pública, comparável e auditável.",
+              },
+            ].map((step) => (
+              <li
+                key={step.n}
+                className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col"
+              >
+                <span className="text-3xl font-bold text-[#008080]/80 leading-none">
+                  {step.n}
+                </span>
+                <h3 className="mt-3 text-base font-bold text-slate-900">
+                  {step.t}
+                </h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  {step.d}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         {/* Livre acesso */}
-        <section className="mb-14">
+        <section id="materiais" className="mb-14 scroll-mt-20">
           <div className="flex items-baseline justify-between mb-4">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-emerald-700 font-semibold">
