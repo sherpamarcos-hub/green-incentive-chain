@@ -174,7 +174,7 @@ function PropostaPage() {
         </section>
 
         {/* Livre acesso */}
-        <section className="mb-14">
+        <section id="materiais" className="mb-14 scroll-mt-20">
           <div className="flex items-baseline justify-between mb-4">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-emerald-700 font-semibold">
