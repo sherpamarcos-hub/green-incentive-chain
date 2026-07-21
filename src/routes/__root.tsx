@@ -77,18 +77,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Eco-Token Transition (ETT) is a verifiable incentive ecosystem that transforms sustainable behaviors into measurable economic and reputational advantages." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Eco-Token Transition (ETT) is a verifiable incentive ecosystem that transforms sustainable behaviors into measurable economic and reputational advantages." },
+      { title: "Programa ETT — Espelho de Trajetória e Transparência" },
+      {
+        name: "description",
+        content:
+          "Infraestrutura pública regional que valida práticas produtivas sustentáveis a partir de dados fiscais já existentes — sem moeda, sem novo órgão.",
+      },
+      { name: "author", content: "Marcos Fernando C. dos Santos" },
+      { property: "og:site_name", content: "Programa ETT" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Eco-Token Transition (ETT) is a verifiable incentive ecosystem that transforms sustainable behaviors into measurable economic and reputational advantages." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b272f816-c084-4a77-a4e5-72431a625907/id-preview-01c6d239--56f05453-cf97-4526-8bf5-a11b1626f63d.lovable.app-1782398098424.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b272f816-c084-4a77-a4e5-72431a625907/id-preview-01c6d239--56f05453-cf97-4526-8bf5-a11b1626f63d.lovable.app-1782398098424.png" },
+      { property: "og:locale", content: "pt_BR" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
