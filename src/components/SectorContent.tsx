@@ -46,14 +46,16 @@ export function SectorContent({ id }: { id: SectorId }) {
             territorial.
           </p>
           <p>
-            O estudo recente das universidades de <strong>Oxford e Leiden
-            (2026)</strong> quantifica em <strong>US$ 5,7 trilhões
-            anuais</strong> os danos ambientais causados pelos 10% maiores
-            consumidores do planeta — cifra superior ao PIB da maioria das
-            nações. No Brasil, isso se traduz em risco de crédito para
-            produtores, pressão sobre recursos hídricos e exclusão de pequenos
-            e médios produtores dos mercados de elite por falta de
-            rastreabilidade formal.
+            Estudo conjunto do <strong>Oxford Martin School</strong> e da{" "}
+            <strong>Leiden University</strong>, publicado na{" "}
+            <em>Nature Communications Sustainability</em> em junho de 2026,
+            quantifica entre <strong>US$ 1,7 e US$ 5,7 trilhões
+            anuais</strong> os danos ambientais atribuíveis aos 10% maiores
+            consumidores do planeta — valor superior aos compromissos globais
+            de financiamento climático e de biodiversidade somados. No Brasil,
+            isso se traduz em risco de crédito para produtores, pressão sobre
+            recursos hídricos e exclusão de pequenos e médios produtores dos
+            mercados exigentes por falta de rastreabilidade formal.
           </p>
           <p>
             Nossa proposta é <strong>regional e imediata</strong>. Em vez de
@@ -166,11 +168,12 @@ export function SectorContent({ id }: { id: SectorId }) {
             1. Contexto e justificativa
           </h3>
           <p>
-            <strong>Problema global:</strong> Oxford &amp; Leiden (2026) estimam
-            em US$ 5,7 trilhões anuais os danos ambientais atribuídos aos 10%
-            maiores consumidores do planeta. A resposta não pode depender
-            apenas de grandes corporações — é preciso incluir a base da cadeia
-            produtiva.
+            <strong>Problema global:</strong> Oxford Martin School &amp; Leiden
+            University (<em>Nature Communications Sustainability</em>, 2026)
+            estimam entre US$ 1,7 e US$ 5,7 trilhões anuais os danos ambientais
+            atribuídos aos 10% maiores consumidores do planeta. A resposta não
+            pode depender apenas de grandes corporações — é preciso incluir e
+            reconhecer a base da cadeia produtiva.
           </p>
           <p>
             <strong>Problema local:</strong> pequenos produtores brasileiros já
@@ -178,6 +181,19 @@ export function SectorContent({ id }: { id: SectorId }) {
             forma padronizada, o que os exclui de linhas de crédito
             diferenciadas, editais ESG (PAA, PNAE) e contratos com grandes
             empresas exigentes de Scope 3.
+          </p>
+          <p>
+            <strong>Base do mecanismo de reconhecimento:</strong> a literatura
+            sobre governança de recursos comuns (Elinor Ostrom, Nobel de
+            Economia 2009) demonstra que arranjos institucionais locais, com
+            regras claras e monitoramento validado por pares, produzem melhores
+            resultados de sustentabilidade que comando-e-controle centralizado.
+            Complementarmente, a economia comportamental (Richard Thaler,
+            Nobel 2017) mostra que reconhecimento tempestivo e visível eleva a
+            adesão a comportamentos desejáveis mais do que sanções abstratas.
+            Trabalho recente do INET Oxford (2026) sobre intervenções
+            pró-ambientais reforça a eficácia de mecanismos que combinam
+            informação, feedback e reconhecimento.
           </p>
 
           <h3 className="text-lg font-bold text-slate-900 pt-2">
@@ -222,8 +238,13 @@ export function SectorContent({ id }: { id: SectorId }) {
           </p>
 
           <p className="text-xs text-slate-500 pt-4">
-            Referências: University of Oxford &amp; Leiden University (2026);
-            documentação legal do PAA e PNAE.
+            Referências: Oxford Martin School &amp; Leiden University,{" "}
+            <em>Environmental damages of the top ten percent consumers…</em>,
+            Nature Communications Sustainability (2026); Ostrom, E.,{" "}
+            <em>Governing the Commons</em> (Cambridge, 1990); Thaler &amp;
+            Sunstein, <em>Nudge</em> (Yale, 2008); INET Oxford Working Paper
+            2026-13 sobre intervenções pró-ambientais; documentação legal do
+            PAA e PNAE.
           </p>
         </div>
       );
