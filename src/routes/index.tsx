@@ -2,22 +2,23 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
-import { SECTORS, type SectorId } from "@/lib/sectors";
+import { SectorContent } from "@/components/SectorContent";
+import { SECTORS, getSector, type SectorId } from "@/lib/sectors";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sistema ETT — Proposta Técnica" },
+      { title: "Programa ETT — Espelho de Trajetória e Transparência" },
       {
         name: "description",
         content:
-          "Ecossistema de incentivos verificáveis para água, solo e circularidade — Piloto Sul de Minas Gerais.",
+          "Infraestrutura pública regional que valida práticas produtivas sustentáveis via NF-e, Nota de Produtor Rural e GT-ETT — sem moeda, sem novo órgão.",
       },
-      { property: "og:title", content: "Sistema ETT — Proposta Técnica" },
+      { property: "og:title", content: "Programa ETT — Espelho de Trajetória e Transparência" },
       {
         property: "og:description",
         content:
-          "Proposta técnica do Sistema ETT: MRV, ativo digital e reputação para impacto ambiental verificável.",
+          "Modelo regional de validação produtiva sustentável para pequenos e médios produtores, cooperativas e empresas.",
       },
     ],
   }),
@@ -27,8 +28,12 @@ export const Route = createFileRoute("/")({
 function PropostaPage() {
   const [showForm, setShowForm] = useState(false);
   const [preselected, setPreselected] = useState<SectorId[]>([]);
+  const [openFree, setOpenFree] = useState<SectorId | null>(null);
 
-  function openFor(id: SectorId) {
+  const freeSectors = SECTORS.filter((s) => !s.restricted);
+  const restrictedSectors = SECTORS.filter((s) => s.restricted);
+
+  function requestAccess(id: SectorId) {
     setPreselected([id]);
     setShowForm(true);
     setTimeout(() => {
@@ -36,95 +41,152 @@ function PropostaPage() {
     }, 50);
   }
 
+  function openFreeBlock(id: SectorId) {
+    setOpenFree((cur) => (cur === id ? null : id));
+  }
+
   return (
     <div className="min-h-screen bg-[#fcfbf8] text-slate-800 font-sans">
-      <header className="print:hidden border-b border-slate-200 bg-white">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+      <header className="print:hidden border-b border-slate-200 bg-white sticky top-0 z-10">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <EttLogo />
           <button
             onClick={() => window.print()}
             className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
-            Imprimir / Salvar em PDF
+            Imprimir / Salvar PDF
           </button>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-12">
-        <section className="mb-12">
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-            Proposta Técnica
+      <main className="max-w-5xl mx-auto px-6 py-12">
+        {/* Hero */}
+        <section className="mb-14">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
+            Programa ETT · Versão Pública 2026
           </p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900">
-            Sistema ETT
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+            Espelho de Trajetória
+            <br />e Transparência
           </h1>
-          <p className="mt-4 text-lg text-slate-600 max-w-3xl">
-            Ecossistema de incentivos verificáveis para a preservação da água,
-            do solo e a promoção da circularidade — Projeto-Piloto Sul de Minas
-            Gerais.
+          <p className="mt-5 text-lg text-slate-600 max-w-3xl leading-relaxed">
+            Infraestrutura pública regional que valida práticas produtivas
+            sustentáveis a partir de dados fiscais já existentes — NF-e, Nota
+            de Produtor Rural e amostragem de campo. Sem criar moeda, sem
+            novo órgão, sem custo obrigatório ao Estado no piloto.
           </p>
-        </section>
-
-        {/* Visão Geral - LIBERADA */}
-        <section className="space-y-8 bg-white rounded-2xl border border-slate-200 p-8 md:p-10 shadow-sm">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-[#008080] font-semibold mb-1">
-              Visão geral · acesso livre
-            </p>
-            <h2 className="text-2xl font-bold text-slate-900">
-              O que é o Sistema ETT
-            </h2>
+          <div className="mt-6 flex flex-wrap gap-2 text-xs">
+            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700">
+              Sem token · sem criptoativo
+            </span>
+            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700">
+              Piloto 12 meses
+            </span>
+            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700">
+              GT-ETT: SEFAZ · Emater · Cooperativas · Academia
+            </span>
           </div>
-          <p className="text-slate-700 leading-relaxed">
-            O Sistema ETT é um ecossistema de incentivos verificáveis que
-            transforma comportamentos sustentáveis em vantagem econômica e
-            reputacional mensurável. Diferentemente de modelos baseados em
-            declarações, o ETT só atribui valor ao que é efetivamente medido e
-            auditado.
-          </p>
-          <p className="text-slate-700 leading-relaxed">
-            Três pilares sustentam a arquitetura:{" "}
-            <strong>Evidência</strong> (MRV — registro auditável),{" "}
-            <strong>Transação</strong> (ETT-Ativo — valor econômico) e{" "}
-            <strong>Transformação</strong> (Reputação — score vinculado ao
-            CPF/CNPJ). O piloto no Sul de Minas cobre três frentes: perdas de
-            água municipal, qualidade ambiental (indústria/agro) e
-            circularidade de embalagens e resíduos.
-          </p>
         </section>
 
-        {/* Setores TRANCADOS */}
-        <section className="mt-12">
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-2">
-            Conteúdo restrito
-          </p>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            Blocos com acesso mediante liberação
-          </h2>
-          <p className="text-slate-600 mb-6 max-w-2xl">
-            Cada bloco abaixo detalha uma dimensão sensível do sistema.
-            Solicite acesso indicando seu vínculo institucional — a liberação é
-            individual e concedida pelo proponente.
+        {/* Livre acesso */}
+        <section className="mb-14">
+          <div className="flex items-baseline justify-between mb-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-emerald-700 font-semibold">
+                Acesso livre
+              </p>
+              <h2 className="text-2xl font-bold text-slate-900 mt-1">
+                Materiais de apresentação
+              </h2>
+            </div>
+            <span className="text-xs text-slate-500">
+              {freeSectors.length} documentos
+            </span>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {freeSectors.map((s) => {
+              const open = openFree === s.id;
+              return (
+                <div
+                  key={s.id}
+                  className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col"
+                >
+                  <span className="inline-flex self-start items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full mb-3">
+                    ● Livre
+                  </span>
+                  <h3 className="text-base font-bold text-slate-900">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600 flex-1">
+                    {s.teaser}
+                  </p>
+                  <button
+                    onClick={() => openFreeBlock(s.id)}
+                    className="mt-4 self-start text-sm font-semibold text-[#008080] hover:text-[#006666]"
+                  >
+                    {open ? "− Fechar" : "+ Ler agora"}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          {openFree && (
+            <div className="mt-6 bg-white rounded-2xl border border-slate-200 p-8 md:p-10 shadow-sm">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <h3 className="text-2xl font-bold text-slate-900">
+                  {getSector(openFree)?.title}
+                </h3>
+                <button
+                  onClick={() => setOpenFree(null)}
+                  className="print:hidden text-sm text-slate-500 hover:text-slate-800"
+                >
+                  Fechar ✕
+                </button>
+              </div>
+              <SectorContent id={openFree} />
+            </div>
+          )}
+        </section>
+
+        {/* Restrito */}
+        <section className="mb-14">
+          <div className="flex items-baseline justify-between mb-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">
+                Acesso mediante liberação
+              </p>
+              <h2 className="text-2xl font-bold text-slate-900 mt-1">
+                Documentos técnicos e regulatórios
+              </h2>
+            </div>
+            <span className="text-xs text-slate-500">
+              {restrictedSectors.length} documentos
+            </span>
+          </div>
+          <p className="text-slate-600 mb-6 max-w-3xl">
+            Cada bloco abaixo detalha uma dimensão sensível do programa
+            (metodologia, regulamento, governança, riscos). O acesso é
+            individual, concedido pelo proponente após análise do vínculo
+            institucional.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
-            {SECTORS.map((s) => (
+            {restrictedSectors.map((s) => (
               <div
                 key={s.id}
                 className="relative bg-white border border-slate-200 rounded-2xl p-6 flex flex-col"
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
-                    🔒 Restrito
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">
+                <span className="inline-flex self-start items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-1 rounded-full mb-3">
+                  🔒 Restrito
+                </span>
+                <h3 className="text-base font-bold text-slate-900">
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm text-slate-600 flex-1">
                   {s.teaser}
                 </p>
                 <button
-                  onClick={() => openFor(s.id)}
+                  onClick={() => requestAccess(s.id)}
                   className="mt-4 self-start rounded-lg bg-[#008080] text-white text-sm font-semibold px-4 py-2 hover:bg-[#006666]"
                 >
                   Solicitar acesso
@@ -134,17 +196,17 @@ function PropostaPage() {
           </div>
         </section>
 
-        {/* Formulário de solicitação */}
+        {/* Formulário */}
         <section
           id="solicitar"
-          className="print:hidden mt-12 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8"
+          className="print:hidden mb-10 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8"
         >
           <h2 className="text-2xl font-bold text-slate-900 text-center">
             Solicitar acesso aos blocos restritos
           </h2>
           <p className="mt-2 text-slate-600 max-w-2xl mx-auto text-center">
             Cada pedido é analisado individualmente. Após aprovação, você
-            recebe um link único de acesso.
+            recebe um link único de acesso apenas aos blocos liberados.
           </p>
           {!showForm ? (
             <div className="text-center mt-6">
@@ -160,11 +222,13 @@ function PropostaPage() {
           )}
         </section>
 
-        <section className="mt-10 rounded-2xl bg-slate-900 text-slate-100 p-8">
+        <section className="rounded-2xl bg-slate-900 text-slate-100 p-8">
           <p className="font-semibold">
-            Proponente: Marcos Fernando C. dos Santos — Pouso Alegre - MG
+            Proponente Técnico: Marcos Fernando C. dos Santos — Pouso Alegre, MG
           </p>
-          <p className="mt-1 text-slate-300">WhatsApp: (35) 99934-0088</p>
+          <p className="mt-1 text-slate-300 text-sm">
+            Programa ETT — Modelo de Infraestrutura Regional · WhatsApp: (35) 99934-0088
+          </p>
         </section>
       </main>
     </div>
@@ -172,6 +236,7 @@ function PropostaPage() {
 }
 
 function RequestForm({ preselected }: { preselected: SectorId[] }) {
+  const restricted = SECTORS.filter((s) => s.restricted);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [institution, setInstitution] = useState("");
@@ -280,7 +345,7 @@ function RequestForm({ preselected }: { preselected: SectorId[] }) {
           Blocos desejados:
         </p>
         <div className="flex flex-wrap gap-2">
-          {SECTORS.map((s) => {
+          {restricted.map((s) => {
             const on = selected.includes(s.id);
             return (
               <button
