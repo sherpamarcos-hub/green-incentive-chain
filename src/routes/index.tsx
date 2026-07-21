@@ -52,14 +52,22 @@ function PropostaPage() {
   return (
     <div className="min-h-screen bg-[#fcfbf8] text-slate-800 font-sans">
       <header className="print:hidden border-b border-slate-200 bg-white sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <EttLogo />
-          <button
-            onClick={() => window.print()}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-          >
-            Imprimir / Salvar PDF
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href="/adesao"
+              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              Modelo de Adesão
+            </a>
+            <button
+              onClick={() => window.print()}
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              Imprimir / Salvar PDF
+            </button>
+          </div>
         </div>
       </header>
 
