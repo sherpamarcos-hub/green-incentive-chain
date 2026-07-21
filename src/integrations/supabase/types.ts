@@ -109,6 +109,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_access_by_token: {
+        Args: { _token: string }
+        Returns: {
+          approved_at: string
+          institution: string
+          name: string
+          sectors_granted: string[]
+          status: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
