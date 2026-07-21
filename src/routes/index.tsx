@@ -20,6 +20,10 @@ export const Route = createFileRoute("/")({
         content:
           "Modelo regional de validação produtiva sustentável para pequenos e médios produtores, cooperativas e empresas.",
       },
+      { property: "og:url", content: "https://green-incentive-chain.lovable.app/" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://green-incentive-chain.lovable.app/" },
     ],
   }),
   component: PropostaPage,

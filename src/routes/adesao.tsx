@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
+
 import { EttLogo } from "@/components/EttLogo";
 
 export const Route = createFileRoute("/adesao")({
@@ -236,5 +236,3 @@ function TierCard({
     </div>
   );
 }
-// dummy touch to satisfy the linter's unused-import guard
-void supabase;
