@@ -29,14 +29,12 @@ function AcessoPage() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await supabase
-        .from("access_requests")
-        .select("name, sectors_granted, status")
-        .eq("token", token)
-        .eq("status", "approved")
-        .maybeSingle();
-      if (!data) setNotFound(true);
-      else setRow(data as Row);
+      const { data } = await supabase.rpc("get_access_by_token", {
+        _token: token,
+      });
+      const first = Array.isArray(data) ? data[0] : data;
+      if (!first) setNotFound(true);
+      else setRow(first as Row);
       setLoading(false);
     })();
   }, [token]);
