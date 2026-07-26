@@ -342,6 +342,7 @@ function RequestForm({ preselected }: { preselected: SectorId[] }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   function toggle(id: SectorId) {
     setSelected((s) =>
@@ -358,6 +359,10 @@ function RequestForm({ preselected }: { preselected: SectorId[] }) {
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
       setError("E-mail inválido.");
+      return;
+    }
+    if (!consent) {
+      setError("É necessário autorizar o tratamento dos dados (LGPD).");
       return;
     }
     setBusy(true);
@@ -461,6 +466,19 @@ function RequestForm({ preselected }: { preselected: SectorId[] }) {
           })}
         </div>
       </div>
+      <label className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed mt-1">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5 h-4 w-4 accent-[#008080]"
+        />
+        <span>
+          Autorizo o tratamento dos dados fornecidos exclusivamente para
+          análise deste pedido e envio do link de acesso, conforme a Lei nº
+          13.709/2018 (LGPD). Os dados não são compartilhados com terceiros.
+        </span>
+      </label>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <button
         type="submit"

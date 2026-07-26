@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { EttLogo } from "@/components/EttLogo";
+import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/adesao")({
   head: () => ({
@@ -21,13 +22,13 @@ export const Route = createFileRoute("/adesao")({
       { property: "og:type", content: "article" },
       {
         property: "og:url",
-        content: "https://green-incentive-chain.lovable.app/adesao",
+        content: `${SITE_URL}/adesao`,
       },
     ],
     links: [
       {
         rel: "canonical",
-        href: "https://green-incentive-chain.lovable.app/adesao",
+        href: `${SITE_URL}/adesao`,
       },
     ],
   }),
