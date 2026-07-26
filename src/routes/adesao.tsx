@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { EttLogo } from "@/components/EttLogo";
+import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/adesao")({
   head: () => ({
@@ -21,13 +22,13 @@ export const Route = createFileRoute("/adesao")({
       { property: "og:type", content: "article" },
       {
         property: "og:url",
-        content: "https://green-incentive-chain.lovable.app/adesao",
+        content: `${SITE_URL}/adesao`,
       },
     ],
     links: [
       {
         rel: "canonical",
-        href: "https://green-incentive-chain.lovable.app/adesao",
+        href: `${SITE_URL}/adesao`,
       },
     ],
   }),
@@ -61,7 +62,7 @@ function AdesaoPage() {
 
       <main className="max-w-4xl mx-auto px-6 py-12">
         <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
-          Documento Institucional · 2026
+          Proposta Institucional · 2026
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900 leading-tight tracking-tight">
           Modelo de Adesão ao<br />

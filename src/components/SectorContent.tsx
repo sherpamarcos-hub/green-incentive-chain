@@ -48,8 +48,16 @@ export function SectorContent({ id }: { id: SectorId }) {
           <p>
             Estudo conjunto do <strong>Oxford Martin School</strong> e da{" "}
             <strong>Leiden University</strong>, publicado na{" "}
-            <em>Nature Communications Sustainability</em> em junho de 2026,
-            quantifica entre <strong>US$ 1,7 e US$ 5,7 trilhões
+            <em>Nature Communications Sustainability</em> em 2026 (
+            <a
+              href="https://www.nature.com/commsenv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#008080] underline hover:text-[#006666]"
+            >
+              nature.com/commsenv
+            </a>
+            ), quantifica entre <strong>US$ 1,7 e US$ 5,7 trilhões
             anuais</strong> os danos ambientais atribuíveis aos 10% maiores
             consumidores do planeta — valor superior aos compromissos globais
             de financiamento climático e de biodiversidade somados. No Brasil,
@@ -303,12 +311,18 @@ export function SectorContent({ id }: { id: SectorId }) {
           </ul>
 
           <h3 className="text-lg font-bold text-slate-900 pt-2">
-            Exemplos de lastro (revisão semestral)
+            Exemplos ilustrativos de lastro (revisão semestral)
           </h3>
+          <p className="text-sm text-slate-600 italic">
+            Os valores abaixo são <strong>ilustrativos</strong>, destinados
+            apenas a demonstrar o método de ancoragem. Os parâmetros
+            definitivos serão fixados pelo GT-ETT após calibração técnica no
+            piloto, com base em orçamentos regionais e revisão acadêmica.
+          </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>1 PCP = custo médio verificado de reuso de 1 m³ de água industrial em ciclo fechado.</li>
-            <li>1 PCP = diferença de custo comprovada na aquisição de 100 embalagens biodegradáveis certificadas.</li>
-            <li>5 PCP = implementação verificada de agricultura regenerativa em 1 hectare por safra.</li>
+            <li>1 PCP ≈ custo médio verificado de reuso de 1 m³ de água industrial em ciclo fechado.</li>
+            <li>1 PCP ≈ diferença de custo comprovada na aquisição de 100 embalagens biodegradáveis certificadas.</li>
+            <li>5 PCP ≈ implementação verificada de agricultura regenerativa em 1 hectare por safra.</li>
           </ul>
 
           <p className="text-sm text-slate-500 italic pt-2">
