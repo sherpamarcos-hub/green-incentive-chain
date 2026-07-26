@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermoInteresseRouteImport } from './routes/termo-interesse'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdesaoRouteImport } from './routes/adesao'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AcessoTokenRouteImport } from './routes/acesso.$token'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
+const TermoInteresseRoute = TermoInteresseRouteImport.update({
+  id: '/termo-interesse',
+  path: '/termo-interesse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/termo-interesse': typeof TermoInteresseRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/acesso/$token': typeof AcessoTokenRoute
 }
@@ -65,6 +72,7 @@ export interface FileRoutesByTo {
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/termo-interesse': typeof TermoInteresseRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/acesso/$token': typeof AcessoTokenRoute
 }
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/termo-interesse': typeof TermoInteresseRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/acesso/$token': typeof AcessoTokenRoute
 }
@@ -85,10 +94,18 @@ export interface FileRouteTypes {
     | '/adesao'
     | '/auth'
     | '/sitemap.xml'
+    | '/termo-interesse'
     | '/admin'
     | '/acesso/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/adesao' | '/auth' | '/sitemap.xml' | '/admin' | '/acesso/$token'
+  to:
+    | '/'
+    | '/adesao'
+    | '/auth'
+    | '/sitemap.xml'
+    | '/termo-interesse'
+    | '/admin'
+    | '/acesso/$token'
   id:
     | '__root__'
     | '/'
@@ -96,6 +113,7 @@ export interface FileRouteTypes {
     | '/adesao'
     | '/auth'
     | '/sitemap.xml'
+    | '/termo-interesse'
     | '/_authenticated/admin'
     | '/acesso/$token'
   fileRoutesById: FileRoutesById
@@ -106,11 +124,19 @@ export interface RootRouteChildren {
   AdesaoRoute: typeof AdesaoRoute
   AuthRoute: typeof AuthRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermoInteresseRoute: typeof TermoInteresseRoute
   AcessoTokenRoute: typeof AcessoTokenRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/termo-interesse': {
+      id: '/termo-interesse'
+      path: '/termo-interesse'
+      fullPath: '/termo-interesse'
+      preLoaderRoute: typeof TermoInteresseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -180,6 +206,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdesaoRoute: AdesaoRoute,
   AuthRoute: AuthRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermoInteresseRoute: TermoInteresseRoute,
   AcessoTokenRoute: AcessoTokenRoute,
 }
 export const routeTree = rootRouteImport
