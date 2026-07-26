@@ -84,10 +84,11 @@ function TermoInteressePage() {
           <p className="mt-3 text-slate-700 leading-relaxed">
             O <strong>Programa ETT</strong> é obra intelectual originária de{" "}
             <strong>Marcos Fernando C. dos Santos</strong> (Pouso Alegre/MG),
-            protegida pela <strong>Lei nº 9.610/1998</strong>. A denominação
-            "Programa ETT", a metodologia PCP (Perfil de Coerência
-            Produtiva), o Regulamento Institucional, o modelo de Governança
-            (GT-ETT) e demais documentos publicados em{" "}
+            protegida pela <strong>Lei nº 9.610/1998</strong> e{" "}
+            <strong>registrada na Fundação Biblioteca Nacional (FBN/EDA)</strong>.
+            A denominação "Programa ETT", a metodologia PCP (Perfil de
+            Coerência Produtiva), o Regulamento Institucional, o modelo de
+            Governança (GT-ETT) e demais documentos publicados em{" "}
             <a href={SITE_URL} className="text-[#008080] underline">
               {SITE_URL.replace("https://", "")}
             </a>{" "}
