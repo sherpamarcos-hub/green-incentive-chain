@@ -85,11 +85,12 @@ function AdesaoPage() {
             O <strong>Programa ETT — Espelho de Trajetória e Transparência</strong>{" "}
             é de autoria de <strong>Marcos Fernando C. dos Santos</strong>{" "}
             (Pouso Alegre/MG), sendo obra intelectual originária protegida pela{" "}
-            <strong>Lei nº 9.610/1998</strong> (Lei de Direitos Autorais). A
-            anterioridade da concepção, dos documentos institucionais, da
-            metodologia PCP e da denominação "Programa ETT" é comprovada por
-            publicação datada nesta página institucional e por repositório
-            versionado.
+            <strong>Lei nº 9.610/1998</strong> (Lei de Direitos Autorais) e{" "}
+            <strong>registrada na Fundação Biblioteca Nacional (FBN/EDA)</strong>.
+            A anterioridade da concepção, dos documentos institucionais, da
+            metodologia PCP e da denominação "Programa ETT" é comprovada pelo
+            registro autoral, por publicação datada nesta página institucional
+            e por repositório versionado.
           </p>
           <p className="mt-3 text-slate-700 leading-relaxed">
             Qualquer uso, adaptação, replicação regional ou derivação — por
