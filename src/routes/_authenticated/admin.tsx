@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
 import { SECTORS, getSector, type SectorId } from "@/lib/sectors";
@@ -124,6 +124,12 @@ function AdminPage() {
           <EttLogo />
           <div className="flex items-center gap-3">
             <span className="text-sm text-slate-500">Painel administrativo</span>
+            <Link
+              to="/"
+              className="text-sm rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-50"
+            >
+              ← Início
+            </Link>
             <button
               onClick={signOut}
               className="text-sm rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-50"

@@ -62,7 +62,7 @@ function AdesaoPage() {
 
       <main className="max-w-4xl mx-auto px-6 py-12">
         <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
-          Documento Institucional · 2026
+          Proposta Institucional · 2026
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900 leading-tight tracking-tight">
           Modelo de Adesão ao<br />
