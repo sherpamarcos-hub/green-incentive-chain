@@ -209,6 +209,35 @@ function AdesaoPage() {
             Proponente do Programa ETT
           </p>
         </section>
+
+        {/* Rodapé jurídico */}
+        <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 text-xs text-slate-600 leading-relaxed">
+          <p className="font-semibold text-slate-800 mb-2">
+            Titularidade e enquadramento fiscal
+          </p>
+          <p>
+            Titular contratante:{" "}
+            <strong>Marcos Fernando C. dos Santos</strong>, inscrito no CNPJ sob
+            nº <strong>55.536.716/0001-08</strong> (Microempreendedor
+            Individual — MEI), com sede em Pouso Alegre/MG.
+          </p>
+          <p className="mt-2">
+            Valores das camadas I e II do modelo de adesão são, nesta fase
+            inicial, de caráter <strong>simbólico</strong>, negociados
+            individualmente e compatíveis com os limites legais do
+            enquadramento MEI (Lei Complementar nº 123/2006 e alterações).
+            Havendo necessidade de contratação de porte superior ao permitido
+            pelo MEI, o proponente promoverá, previamente à assinatura, a
+            migração para enquadramento tributário adequado (ME ou EPP), sem
+            prejuízo da continuidade da negociação.
+          </p>
+          <p className="mt-2">
+            A emissão de nota fiscal observará o regime vigente na data da
+            contratação. Contratos com entes públicos poderão exigir
+            documentação complementar (CND, regularidade FGTS, certidões
+            municipais), fornecida sob demanda.
+          </p>
+        </section>
       </main>
     </div>
   );
