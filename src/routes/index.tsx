@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
 import { SectorContent } from "@/components/SectorContent";
 import { SECTORS, getSector, type SectorId } from "@/lib/sectors";
+import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,11 +21,9 @@ export const Route = createFileRoute("/")({
         content:
           "Modelo regional de validação produtiva sustentável para pequenos e médios produtores, cooperativas e empresas.",
       },
-      { property: "og:url", content: "https://green-incentive-chain.lovable.app/" },
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
-    links: [
-      { rel: "canonical", href: "https://green-incentive-chain.lovable.app/" },
-    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
   }),
   component: PropostaPage,
 });
@@ -77,7 +76,7 @@ function PropostaPage() {
           <div className="absolute -top-8 -left-8 w-64 h-64 rounded-full bg-[#008080]/5 blur-3xl -z-0 print:hidden" />
           <div className="relative">
             <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
-              Programa ETT · Documento Institucional · 2026
+              Programa ETT · Proposta Institucional · 2026
             </p>
             <h1 className="mt-3 text-4xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-tight">
               Espelho de Trajetória
@@ -124,7 +123,7 @@ function PropostaPage() {
                 Piloto 12 meses
               </span>
               <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
-                GT-ETT: SEFAZ · Emater · Cooperativas · Academia
+                Composição planejada do GT-ETT: SEFAZ · Emater · Cooperativas · Academia
               </span>
             </div>
           </div>
