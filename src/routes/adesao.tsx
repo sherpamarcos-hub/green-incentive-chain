@@ -86,8 +86,16 @@ function AdesaoPage() {
             é de autoria de <strong>Marcos Fernando C. dos Santos</strong>{" "}
             (Pouso Alegre/MG), sendo obra intelectual originária protegida pela{" "}
             <strong>Lei nº 9.610/1998</strong> (Lei de Direitos Autorais) e{" "}
-            <strong>registrada na Fundação Biblioteca Nacional (FBN/EDA)</strong>.
-            A anterioridade da concepção, dos documentos institucionais, da
+            <strong>
+              registrada na Câmara Brasileira do Livro (CBL) — Registro de
+              Direito Autoral em 25/06/2026
+            </strong>
+            , sob o título <em>"Sistema ETT — Evidência, Transação e
+            Transformação"</em> (hash do documento:{" "}
+            <span className="font-mono text-xs break-all">
+              8076077d108e7494143bdb5f40a82c31e6b4854223e054527cd0fd7897bf0b38
+            </span>
+            ). A anterioridade da concepção, dos documentos institucionais, da
             metodologia PCP e da denominação "Programa ETT" é comprovada pelo
             registro autoral, por publicação datada nesta página institucional
             e por repositório versionado.
