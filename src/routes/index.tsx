@@ -326,7 +326,7 @@ function PropostaPage() {
               },
               {
                 q: "Há certificação, auditoria independente ou validação técnica?",
-                a: "Ainda não. O modelo está em fase conceitual, com registro de autoria na Câmara Brasileira do Livro (CBL, 25/06/2026). A validação técnica independente é justamente o próximo passo previsto no piloto de 12 meses, em parceria com universidade e/ou órgão técnico (Emater, EPAMIG ou equivalente).",
+                a: "Ainda não. O modelo está em fase conceitual, com proteção de autoria pela Lei nº 9.610/1998. A validação técnica independente é justamente o próximo passo previsto no piloto de 12 meses, em parceria com universidade e/ou órgão técnico (Emater, EPAMIG ou equivalente).",
               },
               {
                 q: "Como é evitada a dupla contagem e garantida a rastreabilidade?",
@@ -334,7 +334,7 @@ function PropostaPage() {
               },
               {
                 q: "O projeto já está em operação ou é conceito?",
-                a: "É conceito registrado, ainda não em operação. Está em fase de busca por parceiro-âncora (órgão público, cooperativa ou instituição de pesquisa) para viabilizar o piloto regional de 12 meses. A autoria e a anterioridade estão protegidas por registro de direito autoral (Lei 9.610/1998).",
+                a: "É conceito registrado, ainda não em operação. Está em fase de busca por parceiro-âncora (órgão público, cooperativa ou instituição de pesquisa) para viabilizar o piloto regional de 12 meses. A autoria e a anterioridade estão protegidas pela Lei nº 9.610/1998 (Lei de Direitos Autorais)."
               },
               {
                 q: "Quem responde tecnicamente pelo programa?",
