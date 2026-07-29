@@ -85,19 +85,10 @@ function AdesaoPage() {
             O <strong>Programa ETT — Espelho de Trajetória e Transparência</strong>{" "}
             é de autoria de <strong>Marcos Fernando C. dos Santos</strong>{" "}
             (Pouso Alegre/MG), sendo obra intelectual originária protegida pela{" "}
-            <strong>Lei nº 9.610/1998</strong> (Lei de Direitos Autorais) e{" "}
-            <strong>
-              registrada na Câmara Brasileira do Livro (CBL) — Registro de
-              Direito Autoral em 25/06/2026
-            </strong>
-            , sob o título <em>"Sistema ETT — Evidência, Transação e
-            Transformação"</em> (hash do documento:{" "}
-            <span className="font-mono text-xs break-all">
-              8076077d108e7494143bdb5f40a82c31e6b4854223e054527cd0fd7897bf0b38
-            </span>
-            ). A anterioridade da concepção, dos documentos institucionais, da
-            metodologia PCP e da denominação "Programa ETT" é comprovada pelo
-            registro autoral, por publicação datada nesta página institucional
+            <strong>Lei nº 9.610/1998</strong> (Lei de Direitos Autorais).
+            A anterioridade da concepção, dos documentos institucionais, da
+            metodologia PCP e da denominação "Programa ETT" é comprovada pela
+            proteção autoral, por publicação datada nesta página institucional
             e por repositório versionado.
           </p>
           <p className="mt-3 text-slate-700 leading-relaxed">
@@ -216,7 +207,7 @@ function AdesaoPage() {
             (Nova Lei de Licitações), observada a análise da assessoria
             jurídica do órgão contratante. Para cooperativas e entes privados,
             aplica-se contrato particular de cessão de uso e prestação de
-            serviços técnicos, com registro dos direitos autorais do Programa.
+            serviços técnicos, com proteção dos direitos autorais do Programa.
           </p>
         </section>
 
