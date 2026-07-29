@@ -292,6 +292,77 @@ function PropostaPage() {
           </div>
         </section>
 
+        {/* FAQ Técnico */}
+        <section id="faq" className="mb-14 scroll-mt-20">
+          <div className="mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
+              Perguntas e Respostas Importantes
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-1">
+              FAQ técnico do Programa ETT
+            </h2>
+            <p className="mt-2 text-slate-600 max-w-3xl">
+              Respostas objetivas às dúvidas mais frequentes de avaliadores
+              técnicos, órgãos públicos e potenciais parceiros institucionais.
+            </p>
+          </div>
+          <div className="grid gap-3">
+            {[
+              {
+                q: "Qual é o lastro do ETT?",
+                a: "O lastro é documental e fiscal — não financeiro. Cada registro no Espelho de Trajetória e Transparência é ancorado em documentos já emitidos pelo produtor (NF-e, Nota de Produtor Rural) e validado por amostragem pelo GT-ETT. Não há emissão de token, não há criptoativo e não há lastro monetário.",
+              },
+              {
+                q: "O ETT representa crédito de carbono, direito, ativo ou recompensa?",
+                a: "Nenhum dos quatro no sentido de mercado. O ETT é um mecanismo público de reconhecimento reputacional de práticas produtivas sustentáveis, com base em dados fiscais existentes. Não é crédito de carbono (não segue metodologia VCS/Gold Standard), não é ativo financeiro (não é negociável) e não é direito transferível.",
+              },
+              {
+                q: "Qual metodologia ou padrão sustenta o modelo?",
+                a: "O modelo combina três bases já consolidadas: (i) dados fiscais oficiais (SEFAZ/NF-e), (ii) governança compartilhada inspirada em Elinor Ostrom (Nobel 2009, gestão de bens comuns) e (iii) arquitetura de recompensa reputacional fundamentada em economia comportamental (Thaler, Nobel 2017). A metodologia de validação por amostragem segue protocolos usuais da Emater e cooperativas.",
+              },
+              {
+                q: "Como o ETT se integra ao mercado regulado e voluntário de carbono?",
+                a: "Como camada complementar, não concorrente. O ETT pode servir de pré-qualificação reputacional para produtores que futuramente busquem certificação de carbono (SBCE/Lei 15.042/2024 ou mercados voluntários), reduzindo custo de auditoria por já existir trilha documental validada. Não substitui, não emite e não comercializa créditos.",
+              },
+              {
+                q: "Há certificação, auditoria independente ou validação técnica?",
+                a: "Ainda não. O modelo está em fase conceitual, com registro de autoria na Câmara Brasileira do Livro (CBL, 25/06/2026). A validação técnica independente é justamente o próximo passo previsto no piloto de 12 meses, em parceria com universidade e/ou órgão técnico (Emater, EPAMIG ou equivalente).",
+              },
+              {
+                q: "Como é evitada a dupla contagem e garantida a rastreabilidade?",
+                a: "Pela própria natureza fiscal do lastro: cada NF-e/NPR tem chave única de acesso registrada na SEFAZ, o que impede duplicidade por construção. A rastreabilidade é herdada da infraestrutura tributária existente — o ETT apenas reflete e organiza publicamente esses registros, sem criar nova base paralela.",
+              },
+              {
+                q: "O projeto já está em operação ou é conceito?",
+                a: "É conceito registrado, ainda não em operação. Está em fase de busca por parceiro-âncora (órgão público, cooperativa ou instituição de pesquisa) para viabilizar o piloto regional de 12 meses. A autoria e a anterioridade estão protegidas por registro de direito autoral (Lei 9.610/1998).",
+              },
+              {
+                q: "Quem responde tecnicamente pelo programa?",
+                a: "Marcos Fernando Carvalho dos Santos figura como proponente e membro técnico permanente durante toda a vigência do projeto — na qualidade de autor da concepção, sem assumir responsabilidade técnica regulamentar (que caberá aos órgãos e profissionais habilitados do GT-ETT: SEFAZ, Emater, cooperativas e academia).",
+              },
+            ].map((item, i) => (
+              <details
+                key={i}
+                className="group bg-white border border-slate-200 rounded-2xl p-5 open:shadow-sm"
+              >
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                  <h3 className="text-base font-semibold text-slate-900 leading-snug">
+                    {item.q}
+                  </h3>
+                  <span className="text-[#008080] text-xl leading-none shrink-0 group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+
+
         {/* Formulário */}
         <section
           id="solicitar"
