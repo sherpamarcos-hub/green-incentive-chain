@@ -376,48 +376,71 @@ function LandingPage() {
       </section>
 
 
-      {/* 3. A solução */}
+      {/* 3. Como funciona */}
       <section id="como-funciona" className="scroll-mt-20 bg-white py-20">
         <div className="mx-auto max-w-7xl px-5">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
-              A solução
+              Como funciona
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              O Espelho ETT em quatro passos
+              Do campo ao reconhecimento em 4 passos
             </h2>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+              O produtor não precisa preencher nada novo. O ETT usa o que ele já
+              emite.
+            </p>
           </Reveal>
 
-          <ol className="mt-10 grid gap-5 md:grid-cols-4">
-            {PASSOS.map((s, i) => (
-              <Reveal key={s.n} delay={i * 90} className="h-full">
-                <li className="relative h-full list-none rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                  {i < PASSOS.length - 1 && (
-                    <span className="absolute right-[-14px] top-12 hidden h-px w-6 bg-[#2d7d32]/30 md:block" />
-                  )}
-                  <div className="flex items-center justify-between">
-                    <span className="text-3xl font-semibold leading-none text-[#2d7d32]">
-                      {s.n}
-                    </span>
-                    <s.icon className="h-6 w-6 text-[#2d7d32]" />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold">{s.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                    {s.d}
-                  </p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
+          <div className="relative mt-12">
+            {/* linha conectora desktop */}
+            <span
+              aria-hidden
+              className="absolute left-0 right-0 top-6 hidden h-0.5 bg-[#4caf50]/40 md:block"
+            />
+            {/* linha conectora mobile */}
+            <span
+              aria-hidden
+              className="absolute bottom-6 left-6 top-6 w-0.5 bg-[#4caf50]/40 md:hidden"
+            />
+            <ol className="grid gap-8 md:grid-cols-4 md:gap-5">
+              {PASSOS.map((s, i) => (
+                <Reveal key={s.n} delay={i * 90} className="h-full">
+                  <li className="relative flex list-none gap-5 md:block">
+                    <span
+                      aria-hidden
+                      className="relative z-10 mt-3 flex h-3 w-3 shrink-0 rounded-full bg-[#4caf50] ring-4 ring-white md:ml-0 md:mt-0"
+                      style={{ marginLeft: "1.125rem" }}
+                    />
+                    <div className="md:mt-8">
+                      <div className="flex items-center gap-3">
+                        <span className="text-4xl font-semibold leading-none text-[#1a5f2a]">
+                          {s.n}
+                        </span>
+                        <s.icon className="h-6 w-6 text-[#4caf50]" />
+                      </div>
+                      <h3 className="mt-4 text-base font-semibold text-[#212529]">
+                        {s.t}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                        {s.d}
+                      </p>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
 
           <Reveal delay={120}>
-            <p className="mt-8 rounded-xl bg-[#f5f5f5] p-6 text-base leading-relaxed text-slate-700">
-              O ETT não cria nova burocracia. Reaproveita o que o produtor já
-              emite e o que o Estado já recebe.
+            <p className="mt-12 rounded-r-xl border-l-4 border-[#1a5f2a] bg-[#e8f5e9] p-6 text-base leading-relaxed text-[#212529]">
+              Não criamos burocracia. Reaproveitamos o que o produtor já emite e
+              o que o Estado já recebe.
             </p>
           </Reveal>
         </div>
       </section>
+
 
       {/* 3b. Complementaridade institucional */}
       <section id="complementaridade" className="scroll-mt-20 bg-white pb-20">
