@@ -396,3 +396,23 @@ function TierCard({
     </div>
   );
 }
+
+function ModoCard({
+  tag,
+  title,
+  body,
+}: {
+  tag: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-5">
+      <span className="inline-block rounded-full bg-[#008080]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#008080]">
+        {tag}
+      </span>
+      <h3 className="mt-3 text-base font-bold text-slate-900">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-slate-700">{body}</p>
+    </div>
+  );
+}
