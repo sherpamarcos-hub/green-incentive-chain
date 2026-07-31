@@ -815,7 +815,20 @@ function LandingPage() {
                   {n.label}
                 </button>
               ))}
+              <a
+                href="/adesao"
+                className="text-sm text-slate-600 transition hover:text-[#1a5f2a]"
+              >
+                Modelo de Adesão
+              </a>
+              <a
+                href="/termo-interesse"
+                className="text-sm text-slate-600 transition hover:text-[#1a5f2a]"
+              >
+                Termo de Interesse
+              </a>
             </nav>
+
             <div className="flex items-center gap-3">
               <a
                 href="https://www.linkedin.com"
