@@ -704,12 +704,22 @@ function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={() => scrollTo("contato")}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-                >
-                  Solicitar Acesso <ArrowRight className="h-4 w-4" />
-                </button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      aria-label="Solicitar acesso aos documentos técnicos"
+                      className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#5a5a5a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#444]"
+                    >
+                      Solicitar Acesso <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Solicitar acesso aos documentos técnicos</DialogTitle>
+                    </DialogHeader>
+                    <AccessForm />
+                  </DialogContent>
+                </Dialog>
               </div>
             </Reveal>
           </div>
