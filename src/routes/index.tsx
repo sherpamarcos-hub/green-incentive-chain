@@ -627,7 +627,7 @@ function LandingPage() {
               Biblioteca
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              Materiais e documentos
+              Documentos do Programa ETT
             </h2>
           </Reveal>
 
