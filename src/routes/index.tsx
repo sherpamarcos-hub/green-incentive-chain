@@ -253,7 +253,28 @@ function LandingPage() {
             </button>
           </div>
         </div>
+        {/* navegação mobile/tablet */}
+        <nav className="lg:hidden border-t border-slate-200 overflow-x-auto">
+          <div className="mx-auto flex max-w-7xl items-center gap-1 px-4 py-2 whitespace-nowrap">
+            {NAV.map((n) => (
+              <button
+                key={n.id}
+                onClick={() => scrollTo(n.id)}
+                className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-[#f5f5f5] hover:text-[#1a5f2a]"
+              >
+                {n.label}
+              </button>
+            ))}
+            <a
+              href="/adesao"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-[#f5f5f5] hover:text-[#1a5f2a]"
+            >
+              Modelo de Adesão
+            </a>
+          </div>
+        </nav>
       </header>
+
 
       {/* 1. Hero */}
       <section
