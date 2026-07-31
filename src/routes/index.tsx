@@ -106,29 +106,30 @@ const PROBLEMAS = [
 const PASSOS = [
   {
     n: "01",
-    icon: Sprout,
-    t: "Ação Sustentável",
-    d: "O produtor adota uma prática elegível — adubação verde, plantio direto, manejo integrado, recuperação de área.",
+    icon: Leaf,
+    t: "Ação sustentável",
+    d: "Adubação verde, plantio direto, manejo integrado.",
   },
   {
     n: "02",
     icon: Receipt,
-    t: "Comprovação Fiscal",
-    d: "A prática é refletida em NF-e ou Nota de Produtor Rural já emitida. Nenhum formulário extra é criado.",
+    t: "Comprovação fiscal",
+    d: "Refletida na NF-e ou Nota de Produtor Rural.",
   },
   {
     n: "03",
-    icon: ClipboardCheck,
+    icon: Users,
     t: "Validação GT-ETT",
-    d: "O Grupo Técnico (SEFAZ, Emater, cooperativas e academia) valida os registros por amostragem.",
+    d: "SEFAZ, Emater, cooperativas e academia validam por amostragem.",
   },
   {
     n: "04",
     icon: Award,
     t: "ETT Espelho",
-    d: "A trajetória do produtor passa a ser registrada de forma pública, comparável e auditável.",
+    d: "Trajetória pública, comparável e auditável.",
   },
 ];
+
 
 const PANORAMA: { p: string; f: string; g: string }[] = [
   {
