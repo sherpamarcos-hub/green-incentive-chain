@@ -363,7 +363,97 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* 3b. Complementaridade institucional */}
+      <section id="complementaridade" className="scroll-mt-20 bg-white pb-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <div className="rounded-2xl border border-[#2d7d32]/25 bg-[#f5faf6] p-8 md:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+                Complementaridade institucional
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+                O ETT não concorre com o SeloVerde MG
+              </h2>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700">
+                Minas Gerais já conta com o{" "}
+                <strong>SeloVerde MG</strong>, desenvolvido pelo{" "}
+                <strong>IEF-MG</strong> em parceria com o{" "}
+                <strong>CIT/UFMG</strong> e apoiado por cooperação
+                internacional, voltado à rastreabilidade socioambiental de
+                cadeias produtivas a partir do CAR e de monitoramento por
+                satélite, com interface para empresas. É uma política pública
+                consolidada e a referência estadual no tema.
+              </p>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700">
+                O ETT atua em outro ponto da cadeia. Onde o SeloVerde responde
+                à exigência de conformidade de cadeias exportadoras e de
+                empresas de médio e grande porte, o ETT organiza o registro de
+                trajetória do produtor familiar que abastece o mercado local,
+                que não exporta e que muitas vezes ainda não tem o cadastro
+                ambiental plenamente regularizado. São camadas
+                complementares, não substitutas.
+              </p>
+
+              <div className="mt-8 grid gap-5 md:grid-cols-2">
+                <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#2d7d32]">
+                    Camada de entrada — ETT
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold">
+                    Inclusão e formação de trajetória
+                  </h3>
+                  <ul className="mt-3 space-y-2">
+                    {[
+                      "Produtor familiar e mercado local, sem pauta de exportação",
+                      "Parte da nota fiscal e do registro que o produtor já emite",
+                      "Constrói histórico verificável antes da certificação formal",
+                      "Reconhecimento por comportamento continuado, não por auditoria pontual",
+                    ].map((b) => (
+                      <li key={b} className="flex gap-2 text-sm text-slate-600">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#4caf50]" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Camada de conformidade — SeloVerde MG
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold">
+                    Rastreabilidade para cadeias exportadoras
+                  </h3>
+                  <ul className="mt-3 space-y-2">
+                    {[
+                      "Cadeias de café, soja e pecuária com exigência internacional",
+                      "Base no CAR e em monitoramento por satélite",
+                      "Interface técnica para empresas compradoras",
+                      "Resposta a marcos regulatórios de desmatamento",
+                    ].map((b) => (
+                      <li key={b} className="flex gap-2 text-sm text-slate-600">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <p className="mt-8 max-w-3xl text-sm leading-relaxed text-slate-600">
+                A proposta do ETT é de integração: servir como porta de entrada
+                para produtores hoje fora do alcance dos instrumentos de
+                conformidade, preparando trajetória documentada que possa,
+                adiante, alimentar sistemas estaduais de rastreabilidade. Esta
+                menção é de caráter informativo e não implica vínculo,
+                convênio ou endosso institucional das entidades citadas.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 4. Quem ganha */}
+
       <section className="bg-[#f8f9fa] py-20">
         <div className="mx-auto max-w-7xl px-5">
           <Reveal>
