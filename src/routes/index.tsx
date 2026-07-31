@@ -35,6 +35,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { SECTORS, type SectorId } from "@/lib/sectors";
 import { SITE_URL } from "@/lib/site";
 
@@ -186,35 +193,23 @@ const BENEFICIARIOS = [
 const FAQ = [
   {
     q: "Qual é o lastro do ETT?",
-    a: "Documental e fiscal — não financeiro. Cada registro é ancorado em NF-e ou Nota de Produtor Rural já emitidos e recebidos pelo Estado.",
+    a: "Documental e fiscal. Cada registro utiliza NF-e ou Nota de Produtor Rural já emitidas e recebidas pelo Estado. Não é ativo financeiro.",
   },
   {
-    q: "O ETT representa crédito de carbono?",
-    a: "Não. É reconhecimento reputacional de trajetória produtiva, não um ativo financeiro negociável.",
+    q: "O ETT é crédito de carbono?",
+    a: "Não. É reconhecimento reputacional, não negociável. Pode servir de pré-qualificação para uma futura certificação.",
   },
   {
-    q: "Qual metodologia sustenta o modelo?",
-    a: "Dados fiscais oficiais combinados com governança compartilhada (Elinor Ostrom, Nobel de Economia 2009) e economia comportamental (Richard Thaler, Nobel de Economia 2017).",
-  },
-  {
-    q: "Como o ETT se integra ao mercado de carbono?",
-    a: "Como camada complementar de pré-qualificação da origem. Não substitui o mercado, não emite e não comercializa créditos.",
-  },
-  {
-    q: "Há certificação ou auditoria independente?",
-    a: "Ainda não. O modelo está em fase conceitual; a validação técnica independente é o próximo passo, dentro do piloto.",
-  },
-  {
-    q: "Como é evitada a dupla contagem?",
-    a: "Cada NF-e ou Nota de Produtor Rural possui chave única de acesso registrada na SEFAZ, o que impede duplicidade por construção.",
+    q: "Como evita a dupla contagem?",
+    a: "Cada NF-e possui chave única registrada na SEFAZ. É impossível duplicar por construção.",
   },
   {
     q: "O projeto já está em operação?",
-    a: "É um conceito registrado, em busca de parceiro-âncora para um piloto regional de 12 meses.",
+    a: "É um conceito registrado (CBL), em busca de parceiro-âncora para um piloto de 12 meses em Minas Gerais.",
   },
   {
-    q: "Quem responde tecnicamente pelo programa?",
-    a: "Marcos Fernando Carvalho dos Santos, proponente e autor da concepção (Pouso Alegre, MG).",
+    q: "Quem responde tecnicamente?",
+    a: "Marcos Fernando Carvalho dos Santos, proponente e autor (Pouso Alegre, MG).",
   },
 ];
 
@@ -632,7 +627,7 @@ function LandingPage() {
               Biblioteca
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              Materiais e documentos
+              Documentos do Programa ETT
             </h2>
           </Reveal>
 
@@ -709,12 +704,22 @@ function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={() => scrollTo("contato")}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-                >
-                  Solicitar Acesso <ArrowRight className="h-4 w-4" />
-                </button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      aria-label="Solicitar acesso aos documentos técnicos"
+                      className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#5a5a5a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#444]"
+                    >
+                      Solicitar Acesso <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Solicitar acesso aos documentos técnicos</DialogTitle>
+                    </DialogHeader>
+                    <AccessForm />
+                  </DialogContent>
+                </Dialog>
               </div>
             </Reveal>
           </div>
@@ -729,7 +734,7 @@ function LandingPage() {
               Perguntas e respostas importantes
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              FAQ técnico
+              Perguntas Frequentes
             </h2>
           </Reveal>
           <Reveal delay={80}>
