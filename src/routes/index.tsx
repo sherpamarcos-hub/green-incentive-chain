@@ -106,29 +106,30 @@ const PROBLEMAS = [
 const PASSOS = [
   {
     n: "01",
-    icon: Sprout,
-    t: "Ação Sustentável",
-    d: "O produtor adota uma prática elegível — adubação verde, plantio direto, manejo integrado, recuperação de área.",
+    icon: Leaf,
+    t: "Ação sustentável",
+    d: "Adubação verde, plantio direto, manejo integrado.",
   },
   {
     n: "02",
     icon: Receipt,
-    t: "Comprovação Fiscal",
-    d: "A prática é refletida em NF-e ou Nota de Produtor Rural já emitida. Nenhum formulário extra é criado.",
+    t: "Comprovação fiscal",
+    d: "Refletida na NF-e ou Nota de Produtor Rural.",
   },
   {
     n: "03",
-    icon: ClipboardCheck,
+    icon: Users,
     t: "Validação GT-ETT",
-    d: "O Grupo Técnico (SEFAZ, Emater, cooperativas e academia) valida os registros por amostragem.",
+    d: "SEFAZ, Emater, cooperativas e academia validam por amostragem.",
   },
   {
     n: "04",
     icon: Award,
     t: "ETT Espelho",
-    d: "A trajetória do produtor passa a ser registrada de forma pública, comparável e auditável.",
+    d: "Trajetória pública, comparável e auditável.",
   },
 ];
+
 
 const PANORAMA: { p: string; f: string; g: string }[] = [
   {
@@ -159,44 +160,28 @@ const PANORAMA: { p: string; f: string; g: string }[] = [
 ];
 
 const BENEFICIARIOS = [
-
   {
-    icon: Leaf,
+    icon: Users,
     t: "Pequenos Produtores",
-    b: [
-      "Acesso a mercados que exigem origem sustentável",
-      "Caminho para crédito verde e melhores condições",
-      "Reconhecimento sem custo de certificação",
-    ],
+    d: "Acesso a mercados, crédito verde e reconhecimento sem custo de certificação.",
   },
   {
     icon: Building2,
     t: "Grandes Marcas",
-    b: [
-      "Rastreabilidade de Escopo 3 desde a origem",
-      "Mitigação do risco de greenwashing",
-      "Base documental para relatórios e compliance",
-    ],
+    d: "Rastreabilidade de Escopo 3 e mitigação de risco de greenwashing.",
   },
   {
     icon: Landmark,
     t: "Governos",
-    b: [
-      "Dados em tempo quase real para políticas públicas",
-      "Eficiência fiscal: reaproveita a base já existente",
-      "Nenhum novo órgão permanente é criado",
-    ],
+    d: "Dados em tempo real para políticas públicas e eficiência fiscal.",
   },
   {
     icon: TrendingUp,
     t: "Investidores",
-    b: [
-      "Identificação de cadeias resilientes",
-      "Leitura objetiva de alinhamento ESG",
-      "Comparabilidade entre fornecedores da região",
-    ],
+    d: "Identificação de cadeias resilientes e alinhadas a critérios ESG.",
   },
 ];
+
 
 const FAQ = [
   {
@@ -376,48 +361,71 @@ function LandingPage() {
       </section>
 
 
-      {/* 3. A solução */}
+      {/* 3. Como funciona */}
       <section id="como-funciona" className="scroll-mt-20 bg-white py-20">
         <div className="mx-auto max-w-7xl px-5">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
-              A solução
+              Como funciona
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              O Espelho ETT em quatro passos
+              Do campo ao reconhecimento em 4 passos
             </h2>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+              O produtor não precisa preencher nada novo. O ETT usa o que ele já
+              emite.
+            </p>
           </Reveal>
 
-          <ol className="mt-10 grid gap-5 md:grid-cols-4">
-            {PASSOS.map((s, i) => (
-              <Reveal key={s.n} delay={i * 90} className="h-full">
-                <li className="relative h-full list-none rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                  {i < PASSOS.length - 1 && (
-                    <span className="absolute right-[-14px] top-12 hidden h-px w-6 bg-[#2d7d32]/30 md:block" />
-                  )}
-                  <div className="flex items-center justify-between">
-                    <span className="text-3xl font-semibold leading-none text-[#2d7d32]">
-                      {s.n}
-                    </span>
-                    <s.icon className="h-6 w-6 text-[#2d7d32]" />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold">{s.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                    {s.d}
-                  </p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
+          <div className="relative mt-12">
+            {/* linha conectora desktop */}
+            <span
+              aria-hidden
+              className="absolute left-0 right-0 top-6 hidden h-0.5 bg-[#4caf50]/40 md:block"
+            />
+            {/* linha conectora mobile */}
+            <span
+              aria-hidden
+              className="absolute bottom-6 left-6 top-6 w-0.5 bg-[#4caf50]/40 md:hidden"
+            />
+            <ol className="grid gap-8 md:grid-cols-4 md:gap-5">
+              {PASSOS.map((s, i) => (
+                <Reveal key={s.n} delay={i * 90} className="h-full">
+                  <li className="relative flex list-none gap-5 md:block">
+                    <span
+                      aria-hidden
+                      className="relative z-10 mt-3 flex h-3 w-3 shrink-0 rounded-full bg-[#4caf50] ring-4 ring-white md:ml-0 md:mt-0"
+                      style={{ marginLeft: "1.125rem" }}
+                    />
+                    <div className="md:mt-8">
+                      <div className="flex items-center gap-3">
+                        <span className="text-4xl font-semibold leading-none text-[#1a5f2a]">
+                          {s.n}
+                        </span>
+                        <s.icon className="h-6 w-6 text-[#4caf50]" />
+                      </div>
+                      <h3 className="mt-4 text-base font-semibold text-[#212529]">
+                        {s.t}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                        {s.d}
+                      </p>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
 
           <Reveal delay={120}>
-            <p className="mt-8 rounded-xl bg-[#f5f5f5] p-6 text-base leading-relaxed text-slate-700">
-              O ETT não cria nova burocracia. Reaproveita o que o produtor já
-              emite e o que o Estado já recebe.
+            <p className="mt-12 rounded-r-xl border-l-4 border-[#1a5f2a] bg-[#e8f5e9] p-6 text-base leading-relaxed text-[#212529]">
+              Não criamos burocracia. Reaproveitamos o que o produtor já emite e
+              o que o Estado já recebe.
             </p>
           </Reveal>
         </div>
       </section>
+
 
       {/* 3b. Complementaridade institucional */}
       <section id="complementaridade" className="scroll-mt-20 bg-white pb-20">
@@ -592,28 +600,28 @@ function LandingPage() {
               Impacto
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              Quem ganha com o ETT
+              Valor para toda a cadeia
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {BENEFICIARIOS.map((c, i) => (
               <Reveal key={c.t} delay={i * 80} className="h-full">
-                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <c.icon className="h-6 w-6 text-[#2d7d32]" />
-                  <h3 className="mt-4 text-base font-semibold">{c.t}</h3>
-                  <ul className="mt-3 space-y-2">
-                    {c.b.map((b) => (
-                      <li key={b} className="flex gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#4caf50]" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="h-full rounded-xl border border-[#e0e0e0] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f5e9]">
+                    <c.icon className="h-6 w-6 text-[#1a5f2a]" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold text-[#212529]">
+                    {c.t}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {c.d}
+                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
+
       </section>
 
       {/* 5. Materiais e documentos */}
