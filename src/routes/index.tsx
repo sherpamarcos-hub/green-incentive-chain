@@ -160,44 +160,28 @@ const PANORAMA: { p: string; f: string; g: string }[] = [
 ];
 
 const BENEFICIARIOS = [
-
   {
-    icon: Leaf,
+    icon: Users,
     t: "Pequenos Produtores",
-    b: [
-      "Acesso a mercados que exigem origem sustentável",
-      "Caminho para crédito verde e melhores condições",
-      "Reconhecimento sem custo de certificação",
-    ],
+    d: "Acesso a mercados, crédito verde e reconhecimento sem custo de certificação.",
   },
   {
     icon: Building2,
     t: "Grandes Marcas",
-    b: [
-      "Rastreabilidade de Escopo 3 desde a origem",
-      "Mitigação do risco de greenwashing",
-      "Base documental para relatórios e compliance",
-    ],
+    d: "Rastreabilidade de Escopo 3 e mitigação de risco de greenwashing.",
   },
   {
     icon: Landmark,
     t: "Governos",
-    b: [
-      "Dados em tempo quase real para políticas públicas",
-      "Eficiência fiscal: reaproveita a base já existente",
-      "Nenhum novo órgão permanente é criado",
-    ],
+    d: "Dados em tempo real para políticas públicas e eficiência fiscal.",
   },
   {
     icon: TrendingUp,
     t: "Investidores",
-    b: [
-      "Identificação de cadeias resilientes",
-      "Leitura objetiva de alinhamento ESG",
-      "Comparabilidade entre fornecedores da região",
-    ],
+    d: "Identificação de cadeias resilientes e alinhadas a critérios ESG.",
   },
 ];
+
 
 const FAQ = [
   {
