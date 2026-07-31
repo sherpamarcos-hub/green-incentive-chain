@@ -35,6 +35,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { SECTORS, type SectorId } from "@/lib/sectors";
 import { SITE_URL } from "@/lib/site";
 
