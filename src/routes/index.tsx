@@ -125,7 +125,36 @@ const PASSOS = [
   },
 ];
 
+const PANORAMA: { p: string; f: string; g: string }[] = [
+  {
+    p: "ABC+ / RenovAgro",
+    f: "Financia projetos de baixo carbono de maior porte, com limite de crédito elevado e juros de mercado subsidiado.",
+    g: "Não acompanha práticas operacionais no nível da propriedade. O ETT registra a ação cotidiana, de menor escala, que não chega a virar projeto financiável.",
+  },
+  {
+    p: "Pronaf Eco / Agroecologia",
+    f: "Crédito subsidiado dirigido à agricultura familiar, com taxas reduzidas.",
+    g: "O acesso efetivo é minoritário e as linhas ambientais representam fração marginal da carteira. O ETT reconhece a prática sem exigir operação de crédito.",
+  },
+  {
+    p: "CAR",
+    f: "Cadastro ambiental rural obrigatório, com milhões de registros declarados.",
+    g: "É instrumento de cadastro, não de reconhecimento. Muitos registros seguem pendentes de análise. O ETT não depende de validação cadastral para começar.",
+  },
+  {
+    p: "SeloVerde MG",
+    f: "Rastreabilidade socioambiental para cadeias exportadoras de café, soja e pecuária.",
+    g: "Voltado à conformidade de exportação e a empresas de médio e grande porte. O ETT parte da nota fiscal do produtor que abastece o mercado local.",
+  },
+  {
+    p: "Certificações privadas",
+    f: "Selos como orgânico, comércio justo e certificações de origem, auditados por terceiros.",
+    g: "Custo anual de auditoria inviável para pequenos produtores. O ETT usa registro já existente, sem taxa de certificação.",
+  },
+];
+
 const BENEFICIARIOS = [
+
   {
     icon: Leaf,
     t: "Pequenos Produtores",
@@ -452,7 +481,81 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* 3c. Panorama de instrumentos existentes */}
+      <section id="panorama" className="scroll-mt-20 bg-white pb-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              Panorama
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              Onde o ETT se encaixa entre os instrumentos existentes
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700">
+              O Brasil já dispõe de crédito rural sustentável, cadastro
+              ambiental e selos de rastreabilidade. Nenhum deles, porém,
+              reconhece a prática cotidiana do pequeno produtor a partir do
+              registro fiscal que ele já emite. É esse vazio que o ETT ocupa.
+            </p>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="mt-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                <caption className="sr-only">
+                  Comparativo entre instrumentos existentes e o Programa ETT
+                </caption>
+                <thead>
+                  <tr className="bg-[#f5faf6]">
+                    <th scope="col" className="px-5 py-4 font-semibold text-slate-900">
+                      Programa
+                    </th>
+                    <th scope="col" className="px-5 py-4 font-semibold text-slate-900">
+                      O que faz
+                    </th>
+                    <th scope="col" className="px-5 py-4 font-semibold text-[#2d7d32]">
+                      Lacuna que o ETT atende
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PANORAMA.map((r) => (
+                    <tr
+                      key={r.p}
+                      className="border-t border-slate-200 align-top bg-white"
+                    >
+                      <th
+                        scope="row"
+                        className="px-5 py-4 font-semibold text-slate-900"
+                      >
+                        {r.p}
+                      </th>
+                      <td className="px-5 py-4 leading-relaxed text-slate-600">
+                        {r.f}
+                      </td>
+                      <td className="px-5 py-4 leading-relaxed text-slate-700">
+                        {r.g}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+              Quadro comparativo de caráter informativo, elaborado a partir de
+              informações públicas dos respectivos programas. O ETT é
+              complementar a todos eles e não substitui exigência legal,
+              cadastro obrigatório ou certificação de mercado.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 4. Quem ganha */}
+
 
       <section className="bg-[#f8f9fa] py-20">
         <div className="mx-auto max-w-7xl px-5">
