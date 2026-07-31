@@ -53,7 +53,7 @@ export function SectorContent({ id }: { id: SectorId }) {
               href="https://www.nature.com/commsenv"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#008080] underline hover:text-[#006666]"
+              className="text-[#1a5f2a] underline hover:text-[#164f23]"
             >
               nature.com/commsenv
             </a>
@@ -230,7 +230,7 @@ export function SectorContent({ id }: { id: SectorId }) {
             4. O que o ETT NÃO é
           </h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Não é criptomoeda, token ou ativo financeiro.</li>
+            <li>Não é ativo financeiro, meio de pagamento nem valor mobiliário.</li>
             <li>Não é certificação ou selo comercial pago.</li>
             <li>Não substitui licenças/outorgas — complementa com histórico.</li>
             <li>Não é operado por empresa privada — arranjo institucional via Portaria.</li>

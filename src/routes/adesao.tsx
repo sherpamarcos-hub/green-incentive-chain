@@ -61,12 +61,12 @@ function AdesaoPage() {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
+        <p className="text-xs uppercase tracking-[0.25em] text-[#1a5f2a] font-semibold">
           Proposta Institucional · 2026
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900 leading-tight tracking-tight">
           Modelo de Adesão ao<br />
-          <span className="text-[#008080]">Programa ETT</span>
+          <span className="text-[#1a5f2a]">Programa ETT</span>
         </h1>
         <p className="mt-6 text-lg text-slate-600 leading-relaxed">
           O Programa ETT é obra autoral. Sua utilização por município, estado,
@@ -77,8 +77,8 @@ function AdesaoPage() {
         </p>
 
         {/* Titularidade e autoria */}
-        <section className="mt-8 rounded-2xl border-l-4 border-[#008080] bg-[#008080]/5 p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
+        <section className="mt-8 rounded-2xl border-l-4 border-[#1a5f2a] bg-[#1a5f2a]/5 p-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#1a5f2a] font-semibold">
             Titularidade e autoria
           </p>
           <p className="mt-3 text-slate-700 leading-relaxed">
@@ -102,7 +102,7 @@ function AdesaoPage() {
           <p className="mt-3">
             <Link
               to="/termo-interesse"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-[#008080] hover:underline"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a5f2a] hover:underline"
             >
               Ver Termo de Interesse (documento não vinculante) →
             </Link>
@@ -153,8 +153,8 @@ function AdesaoPage() {
         </section>
 
         {/* Posição no GT */}
-        <section className="mt-14 rounded-2xl border border-[#008080]/30 bg-[#008080]/5 p-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
+        <section className="mt-14 rounded-2xl border border-[#1a5f2a]/30 bg-[#1a5f2a]/5 p-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#1a5f2a] font-semibold">
             Posição do proponente no GT-ETT
           </p>
           <h2 className="mt-2 text-2xl font-bold text-slate-900">
@@ -173,21 +173,21 @@ function AdesaoPage() {
           </p>
           <ul className="mt-5 space-y-2 text-sm text-slate-700">
             <li className="flex gap-2">
-              <span className="text-[#008080] font-bold">→</span>
+              <span className="text-[#1a5f2a] font-bold">→</span>
               Participa das reuniões e deliberações do GT-ETT com voz técnica.
             </li>
             <li className="flex gap-2">
-              <span className="text-[#008080] font-bold">→</span>
+              <span className="text-[#1a5f2a] font-bold">→</span>
               Zela pela integridade metodológica do Programa (PCP,
               Regulamento, Governança).
             </li>
             <li className="flex gap-2">
-              <span className="text-[#008080] font-bold">→</span>
+              <span className="text-[#1a5f2a] font-bold">→</span>
               Não assume responsabilidade técnica registrada por atos
               executivos ou fiscalizatórios dos órgãos partícipes.
             </li>
             <li className="flex gap-2">
-              <span className="text-[#008080] font-bold">→</span>
+              <span className="text-[#1a5f2a] font-bold">→</span>
               Sua permanência acompanha a vigência do Programa no território
               do aderente.
             </li>
@@ -285,7 +285,7 @@ function AdesaoPage() {
               ],
             ].map(([t, d], i) => (
               <li key={t} className="flex gap-3">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#008080] text-xs font-bold text-white">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1a5f2a] text-xs font-bold text-white">
                   {i + 1}
                 </span>
                 <span>
@@ -313,7 +313,7 @@ function AdesaoPage() {
             <Link
               to="/"
               hash="contato"
-              className="rounded-lg bg-[#008080] text-white text-sm font-semibold px-5 py-3 hover:bg-[#006666] transition"
+              className="rounded-lg bg-[#1a5f2a] text-white text-sm font-semibold px-5 py-3 hover:bg-[#164f23] transition"
             >
               Abrir formulário de solicitação
             </Link>
@@ -380,7 +380,7 @@ function TierCard({
 }) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col">
-      <span className="text-3xl font-bold text-[#008080]/80 leading-none">
+      <span className="text-3xl font-bold text-[#1a5f2a]/80 leading-none">
         {n}
       </span>
       <h3 className="mt-3 text-base font-bold text-slate-900">{title}</h3>
@@ -390,7 +390,7 @@ function TierCard({
       <p className="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
         {body}
       </p>
-      <span className="mt-4 self-start inline-flex text-[10px] font-semibold uppercase tracking-wider text-[#008080] bg-[#008080]/10 px-2 py-1 rounded-full">
+      <span className="mt-4 self-start inline-flex text-[10px] font-semibold uppercase tracking-wider text-[#1a5f2a] bg-[#1a5f2a]/10 px-2 py-1 rounded-full">
         {pill}
       </span>
     </div>
@@ -408,7 +408,7 @@ function ModoCard({
 }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5">
-      <span className="inline-block rounded-full bg-[#008080]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#008080]">
+      <span className="inline-block rounded-full bg-[#1a5f2a]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1a5f2a]">
         {tag}
       </span>
       <h3 className="mt-3 text-base font-bold text-slate-900">{title}</h3>

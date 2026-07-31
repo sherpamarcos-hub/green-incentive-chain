@@ -279,7 +279,7 @@ function LandingPage() {
       {/* 1. Hero */}
       <section
         id="inicio"
-        className="relative flex min-h-[100svh] items-center overflow-hidden scroll-mt-20"
+        className="relative flex min-h-[88svh] items-center overflow-hidden scroll-mt-20"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a5f2a] to-[#2d7d32]" />
         {/* pattern geométrico abstrato */}
@@ -301,7 +301,7 @@ function LandingPage() {
         </div>
         <div className="absolute inset-0 bg-black/30" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-5 py-24">
+        <div className="relative mx-auto w-full max-w-7xl px-5 py-20 md:py-24">
           <Reveal>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-[48px]">
               Reconhecimento ambiental que o produtor já merece

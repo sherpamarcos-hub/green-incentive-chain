@@ -55,7 +55,7 @@ function TermoInteressePage() {
             </Link>
             <button
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#008080] px-3 py-2 text-sm font-semibold text-white hover:bg-[#006666]"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#1a5f2a] px-3 py-2 text-sm font-semibold text-white hover:bg-[#164f23]"
             >
               Imprimir / Salvar PDF
             </button>
@@ -64,12 +64,12 @@ function TermoInteressePage() {
       </header>
 
       <main className="max-w-3xl mx-auto px-6 py-12">
-        <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
+        <p className="text-xs uppercase tracking-[0.25em] text-[#1a5f2a] font-semibold">
           Documento não vinculante
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900 leading-tight tracking-tight">
           Termo de Interesse<br />
-          <span className="text-[#008080]">Programa ETT</span>
+          <span className="text-[#1a5f2a]">Programa ETT</span>
         </h1>
         <p className="mt-6 text-slate-600 leading-relaxed">
           Este documento formaliza, sem gerar obrigação contratual, o
@@ -97,7 +97,7 @@ function TermoInteressePage() {
             A denominação "Programa ETT", a metodologia PCP (Perfil de
             Coerência Produtiva), o Regulamento Institucional, o modelo de
             Governança (GT-ETT) e demais documentos publicados em{" "}
-            <a href={SITE_URL} className="text-[#008080] underline">
+            <a href={SITE_URL} className="text-[#1a5f2a] underline">
               {SITE_URL.replace("https://", "")}
             </a>{" "}
             são de titularidade exclusiva do autor.
@@ -122,7 +122,7 @@ function TermoInteressePage() {
             licenciamento, transferência de titularidade, nem autorização de
             uso da obra. Qualquer uso operacional do Programa depende de
             contrato específico de cessão de uso, conforme{" "}
-            <Link to="/adesao" className="text-[#008080] underline">
+            <Link to="/adesao" className="text-[#1a5f2a] underline">
               Modelo de Adesão
             </Link>
             .
@@ -228,7 +228,7 @@ function Clausula({
 }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5">
-      <p className="text-xs uppercase tracking-wider text-[#008080] font-bold">
+      <p className="text-xs uppercase tracking-wider text-[#1a5f2a] font-bold">
         Cláusula {n}
       </p>
       <h3 className="mt-1 text-base font-bold text-slate-900">{titulo}</h3>
