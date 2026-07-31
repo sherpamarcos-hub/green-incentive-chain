@@ -227,6 +227,7 @@ function LandingPage() {
             <EttLogo />
           </button>
           <nav className="hidden lg:flex items-center gap-1">
+
             {NAV.map((n) => (
               <button
                 key={n.id}
