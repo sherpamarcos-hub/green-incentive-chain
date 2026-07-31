@@ -77,7 +77,7 @@ function AcessoPage() {
             </Link>
             <button
               onClick={() => window.print()}
-              className="rounded-lg bg-[#008080] px-4 py-2 text-sm font-semibold text-white hover:bg-[#006666]"
+              className="rounded-lg bg-[#1a5f2a] px-4 py-2 text-sm font-semibold text-white hover:bg-[#164f23]"
             >
               Salvar PDF
             </button>

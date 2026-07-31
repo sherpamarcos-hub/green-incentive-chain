@@ -230,7 +230,7 @@ function RequestCard({
                 }
                 className={`text-xs px-3 py-1.5 rounded-full border ${
                   on
-                    ? "bg-[#008080] text-white border-[#008080]"
+                    ? "bg-[#1a5f2a] text-white border-[#1a5f2a]"
                     : "bg-white text-slate-700 border-slate-300"
                 }`}
               >
@@ -269,7 +269,7 @@ function RequestCard({
         {row.status !== "approved" && (
           <button
             onClick={() => onApprove(granted)}
-            className="rounded-lg bg-[#008080] text-white text-sm font-semibold px-4 py-2 hover:bg-[#006666]"
+            className="rounded-lg bg-[#1a5f2a] text-white text-sm font-semibold px-4 py-2 hover:bg-[#164f23]"
           >
             Aprovar
           </button>
@@ -285,7 +285,7 @@ function RequestCard({
         {row.status === "approved" && (
           <button
             onClick={onCopy}
-            className="rounded-lg border border-[#008080] text-[#008080] text-sm font-medium px-4 py-2 hover:bg-[#008080]/10"
+            className="rounded-lg border border-[#1a5f2a] text-[#1a5f2a] text-sm font-medium px-4 py-2 hover:bg-[#1a5f2a]/10"
           >
             {copied ? "✓ Copiado" : "Copiar link de acesso"}
           </button>

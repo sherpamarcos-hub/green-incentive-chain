@@ -227,6 +227,7 @@ function LandingPage() {
             <EttLogo />
           </button>
           <nav className="hidden lg:flex items-center gap-1">
+
             {NAV.map((n) => (
               <button
                 key={n.id}
@@ -252,12 +253,33 @@ function LandingPage() {
             </button>
           </div>
         </div>
+        {/* navegação mobile/tablet */}
+        <nav className="lg:hidden border-t border-slate-200 overflow-x-auto">
+          <div className="mx-auto flex max-w-7xl items-center gap-1 px-4 py-2 whitespace-nowrap">
+            {NAV.map((n) => (
+              <button
+                key={n.id}
+                onClick={() => scrollTo(n.id)}
+                className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-[#f5f5f5] hover:text-[#1a5f2a]"
+              >
+                {n.label}
+              </button>
+            ))}
+            <a
+              href="/adesao"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-[#f5f5f5] hover:text-[#1a5f2a]"
+            >
+              Modelo de Adesão
+            </a>
+          </div>
+        </nav>
       </header>
+
 
       {/* 1. Hero */}
       <section
         id="inicio"
-        className="relative flex min-h-[100svh] items-center overflow-hidden scroll-mt-20"
+        className="relative flex min-h-[88svh] items-center overflow-hidden scroll-mt-20"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a5f2a] to-[#2d7d32]" />
         {/* pattern geométrico abstrato */}
@@ -279,7 +301,7 @@ function LandingPage() {
         </div>
         <div className="absolute inset-0 bg-black/30" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-5 py-24">
+        <div className="relative mx-auto w-full max-w-7xl px-5 py-20 md:py-24">
           <Reveal>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-[48px]">
               Reconhecimento ambiental que o produtor já merece
@@ -376,12 +398,12 @@ function LandingPage() {
             {/* linha conectora desktop */}
             <span
               aria-hidden
-              className="absolute left-0 right-0 top-6 hidden h-0.5 bg-[#4caf50]/40 md:block"
+              className="absolute left-0 right-0 top-[5px] hidden h-0.5 bg-[#4caf50]/40 md:block"
             />
             {/* linha conectora mobile */}
             <span
               aria-hidden
-              className="absolute bottom-6 left-6 top-6 w-0.5 bg-[#4caf50]/40 md:hidden"
+              className="absolute bottom-6 left-[23px] top-3 w-0.5 bg-[#4caf50]/40 md:hidden"
             />
             <ol className="grid gap-8 md:grid-cols-4 md:gap-5">
               {PASSOS.map((s, i) => (
@@ -389,9 +411,9 @@ function LandingPage() {
                   <li className="relative flex list-none gap-5 md:block">
                     <span
                       aria-hidden
-                      className="relative z-10 mt-3 flex h-3 w-3 shrink-0 rounded-full bg-[#4caf50] ring-4 ring-white md:ml-0 md:mt-0"
-                      style={{ marginLeft: "1.125rem" }}
+                      className="relative z-10 ml-[18px] mt-3 flex h-3 w-3 shrink-0 rounded-full bg-[#4caf50] ring-4 ring-white md:ml-0 md:mt-0"
                     />
+
                     <div className="md:mt-8">
                       <div className="flex items-center gap-3">
                         <span className="text-4xl font-semibold leading-none text-[#1a5f2a]">
@@ -815,7 +837,20 @@ function LandingPage() {
                   {n.label}
                 </button>
               ))}
+              <a
+                href="/adesao"
+                className="text-sm text-slate-600 transition hover:text-[#1a5f2a]"
+              >
+                Modelo de Adesão
+              </a>
+              <a
+                href="/termo-interesse"
+                className="text-sm text-slate-600 transition hover:text-[#1a5f2a]"
+              >
+                Termo de Interesse
+              </a>
             </nav>
+
             <div className="flex items-center gap-3">
               <a
                 href="https://www.linkedin.com"

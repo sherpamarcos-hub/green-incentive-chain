@@ -50,7 +50,7 @@ function AuthPage() {
       <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
         <div className="flex items-center justify-between mb-6">
           <EttLogo />
-          <Link to="/" className="text-sm text-slate-500 hover:text-[#008080]">
+          <Link to="/" className="text-sm text-slate-500 hover:text-[#1a5f2a]">
             ← Início
           </Link>
         </div>
@@ -68,7 +68,7 @@ function AuthPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail"
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#008080]"
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a5f2a]"
           />
           <input
             type="password"
@@ -77,14 +77,14 @@ function AuthPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha (mín. 8 caracteres)"
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#008080]"
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a5f2a]"
           />
           {error && <p className="text-sm text-red-600">{error}</p>}
           {notice && <p className="text-sm text-emerald-700">{notice}</p>}
           <button
             type="submit"
             disabled={busy}
-            className="rounded-lg bg-[#008080] text-white font-semibold py-3 hover:bg-[#006666] disabled:opacity-60"
+            className="rounded-lg bg-[#1a5f2a] text-white font-semibold py-3 hover:bg-[#164f23] disabled:opacity-60"
           >
             {busy ? "..." : mode === "login" ? "Entrar" : "Criar conta"}
           </button>
@@ -96,7 +96,7 @@ function AuthPage() {
             setNotice(null);
             setMode(mode === "login" ? "signup" : "login");
           }}
-          className="mt-4 w-full text-sm text-slate-500 hover:text-[#008080]"
+          className="mt-4 w-full text-sm text-slate-500 hover:text-[#1a5f2a]"
         >
           {mode === "login"
             ? "Primeiro acesso? Criar conta"
