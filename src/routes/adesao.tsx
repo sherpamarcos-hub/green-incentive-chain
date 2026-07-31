@@ -312,7 +312,7 @@ function AdesaoPage() {
           <div className="mt-6 flex flex-wrap gap-3 justify-center print:hidden">
             <Link
               to="/"
-              hash="solicitar"
+              hash="contato"
               className="rounded-lg bg-[#008080] text-white text-sm font-semibold px-5 py-3 hover:bg-[#006666] transition"
             >
               Abrir formulário de solicitação
