@@ -75,6 +75,7 @@ function scrollTo(id: string) {
 const NAV = [
   { id: "inicio", label: "Início" },
   { id: "como-funciona", label: "Como Funciona" },
+  { id: "quem-ganha", label: "Quem Ganha" },
   { id: "documentos", label: "Documentos" },
   { id: "faq", label: "FAQ" },
   { id: "contato", label: "Contato" },
@@ -83,20 +84,24 @@ const NAV = [
 const PROBLEMAS = [
   {
     icon: Ban,
-    t: "Selos tradicionais excluem PMEs",
-    d: "Auditorias de certificação têm custo proibitivo e exigem estrutura documental que o pequeno produtor não tem.",
+    tone: "text-[#c62828]/80",
+    t: "Selos custam caro",
+    d: "Auditorias de R$ 15–50 mil por ano excluem quem produz de forma limpa, mas sem capital.",
+  },
+  {
+    icon: FileText,
+    tone: "text-slate-400",
+    t: "O SBCE ignora a produção primária",
+    d: "O mercado regulado de carbono exclui o pequeno produtor rural por definição legal.",
   },
   {
     icon: AlertTriangle,
-    t: "SBCE exclui produção primária agropecuária",
-    d: "O produtor rural fica fora do mercado regulado de carbono, mesmo adotando práticas de baixa emissão.",
-  },
-  {
-    icon: ShieldCheck,
-    t: "Greenwashing compromete cadeias",
-    d: "Sem rastreabilidade real na origem, declarações de sustentabilidade viram risco reputacional e jurídico.",
+    tone: "text-amber-500",
+    t: "Greenwashing sem rastreio",
+    d: "Grandes marcas precisam de dados reais da cadeia. O produtor não tem como provar o que faz.",
   },
 ];
+
 
 const PASSOS = [
   {
@@ -270,49 +275,70 @@ function LandingPage() {
       </header>
 
       {/* 1. Hero */}
-      <section id="inicio" className="relative overflow-hidden scroll-mt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a5f2a] to-[#4caf50]" />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+      <section
+        id="inicio"
+        className="relative flex min-h-[100svh] items-center overflow-hidden scroll-mt-20"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a5f2a] to-[#2d7d32]" />
+        {/* pattern geométrico abstrato */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.35) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <Leaf className="absolute -left-6 top-24 h-40 w-40 -rotate-12 text-white/[0.07]" />
+          <Leaf className="absolute right-10 top-1/3 h-64 w-64 rotate-12 text-white/[0.06]" />
+          <Sprout className="absolute bottom-10 left-1/3 h-48 w-48 text-white/[0.05]" />
+          <span className="absolute -right-24 -top-24 h-96 w-96 rounded-full border border-white/10" />
+          <span className="absolute -bottom-32 -left-24 h-[28rem] w-[28rem] rounded-full border border-white/10" />
+        </div>
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div className="relative mx-auto w-full max-w-7xl px-5 py-24">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Baseado em dados fiscais oficiais · Registro CBL · Lei nº 9.610/1998
-            </span>
-            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-6xl">
-              Programa ETT — Espelho de Trajetória e Transparência
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-[48px]">
+              Reconhecimento ambiental que o produtor já merece
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
-              Reconhecimento público de práticas sustentáveis sem burocracia
-              extra. Sem token. Sem criptoativo. Sem custo obrigatório ao Estado.
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
+              Sem burocracia extra. Sem custo. Sem formulário novo. O ETT
+              transforma a Nota Fiscal em reputação sustentável.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <button
                 onClick={() => scrollTo("como-funciona")}
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#1a5f2a] shadow-lg transition hover:bg-white/90"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1a5f2a] px-6 py-3.5 text-sm font-semibold text-white shadow-lg ring-1 ring-white/20 transition hover:bg-[#164f23]"
               >
-                Conheça o Programa <ArrowRight className="h-4 w-4" />
+                Entenda em 4 passos <ArrowRight className="h-4 w-4" />
               </button>
               <button
                 onClick={() => scrollTo("contato")}
-                className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white bg-transparent px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1a5f2a]"
               >
-                Solicitar Acesso aos Documentos Técnicos
+                Solicitar documentos técnicos
               </button>
             </div>
+            <span className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Baseado em dados da SEFAZ · Registro CBL · Lei nº 9.610/1998
+            </span>
           </Reveal>
         </div>
       </section>
 
       {/* 2. O problema */}
-      <section className="bg-[#f8f9fa] py-20">
+      <section id="problema" className="scroll-mt-20 bg-[#f8f9fa] py-20">
         <div className="mx-auto max-w-7xl px-5">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
               O problema
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#212529] md:text-4xl">
-              O reconhecimento não chega a quem produz
+              Por que o produtor sustentável não é reconhecido?
             </h2>
           </Reveal>
 
@@ -333,9 +359,9 @@ function LandingPage() {
 
           <div className="mt-6 grid gap-5 md:grid-cols-3">
             {PROBLEMAS.map((p, i) => (
-              <Reveal key={p.t} delay={i * 90}>
-                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <p.icon className="h-6 w-6 text-[#2d7d32]" />
+              <Reveal key={p.t} delay={i * 90} className="h-full">
+                <div className="h-full rounded-xl border border-[#e0e0e0] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <p.icon className={`h-6 w-6 ${p.tone}`} />
                   <h3 className="mt-4 text-base font-semibold text-[#212529]">
                     {p.t}
                   </h3>
@@ -348,6 +374,7 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
 
       {/* 3. A solução */}
       <section id="como-funciona" className="scroll-mt-20 bg-white py-20">
@@ -557,7 +584,8 @@ function LandingPage() {
       {/* 4. Quem ganha */}
 
 
-      <section className="bg-[#f8f9fa] py-20">
+      <section id="quem-ganha" className="scroll-mt-20 bg-[#f8f9fa] py-20">
+
         <div className="mx-auto max-w-7xl px-5">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
@@ -805,7 +833,9 @@ function LandingPage() {
           </div>
           <p className="mt-8 max-w-3xl text-xs leading-relaxed text-slate-500">
             Programa ETT — Modelo de Infraestrutura Regional. Registro CBL. Não
-            constitui oferta de investimento, criptoativo ou valor mobiliário.
+            constitui oferta de investimento, ativo financeiro negociável ou
+            valor mobiliário.
+
           </p>
         </div>
       </footer>
