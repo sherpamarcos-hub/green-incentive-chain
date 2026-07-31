@@ -1,9 +1,41 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  AlertTriangle,
+  ArrowRight,
+  Award,
+  Ban,
+  Building2,
+  CheckCircle2,
+  ClipboardCheck,
+  Download,
+  FileText,
+  Landmark,
+  Leaf,
+  Lock,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Receipt,
+  ShieldCheck,
+  Sprout,
+  TrendingUp,
+  Unlock,
+  Users,
+  Linkedin,
+} from "lucide-react";
+
 import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
+import { Reveal } from "@/components/Reveal";
 import { SectorContent } from "@/components/SectorContent";
-import { SECTORS, getSector, type SectorId } from "@/lib/sectors";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { SECTORS, type SectorId } from "@/lib/sectors";
 import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -13,427 +45,619 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Infraestrutura pública regional que valida práticas produtivas sustentáveis via NF-e, Nota de Produtor Rural e GT-ETT — sem moeda, sem novo órgão.",
+          "Infraestrutura pública regional que reconhece práticas produtivas sustentáveis usando NF-e e Nota de Produtor Rural — sem burocracia extra e sem custo obrigatório ao Estado.",
       },
       { property: "og:title", content: "Programa ETT — Espelho de Trajetória e Transparência" },
       {
         property: "og:description",
         content:
-          "Modelo regional de validação produtiva sustentável para pequenos e médios produtores, cooperativas e empresas.",
+          "Reconhecimento público de práticas sustentáveis a partir de dados fiscais já existentes. Para produtores, cooperativas, governos, empresas e investidores.",
       },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Programa ETT — Espelho de Trajetória e Transparência" },
+      {
+        name: "twitter:description",
+        content:
+          "Reconhecimento público de práticas sustentáveis sem burocracia extra, a partir de dados fiscais oficiais.",
+      },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/` }],
   }),
-  component: PropostaPage,
+  component: LandingPage,
 });
 
-function PropostaPage() {
-  const [showForm, setShowForm] = useState(false);
-  const [preselected, setPreselected] = useState<SectorId[]>([]);
-  const [openFree, setOpenFree] = useState<SectorId | null>(null);
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
 
+const NAV = [
+  { id: "inicio", label: "Início" },
+  { id: "como-funciona", label: "Como Funciona" },
+  { id: "documentos", label: "Documentos" },
+  { id: "faq", label: "FAQ" },
+  { id: "contato", label: "Contato" },
+];
+
+const PROBLEMAS = [
+  {
+    icon: Ban,
+    t: "Selos tradicionais excluem PMEs",
+    d: "Auditorias de certificação têm custo proibitivo e exigem estrutura documental que o pequeno produtor não tem.",
+  },
+  {
+    icon: AlertTriangle,
+    t: "SBCE exclui produção primária agropecuária",
+    d: "O produtor rural fica fora do mercado regulado de carbono, mesmo adotando práticas de baixa emissão.",
+  },
+  {
+    icon: ShieldCheck,
+    t: "Greenwashing compromete cadeias",
+    d: "Sem rastreabilidade real na origem, declarações de sustentabilidade viram risco reputacional e jurídico.",
+  },
+];
+
+const PASSOS = [
+  {
+    n: "01",
+    icon: Sprout,
+    t: "Ação Sustentável",
+    d: "O produtor adota uma prática elegível — adubação verde, plantio direto, manejo integrado, recuperação de área.",
+  },
+  {
+    n: "02",
+    icon: Receipt,
+    t: "Comprovação Fiscal",
+    d: "A prática é refletida em NF-e ou Nota de Produtor Rural já emitida. Nenhum formulário extra é criado.",
+  },
+  {
+    n: "03",
+    icon: ClipboardCheck,
+    t: "Validação GT-ETT",
+    d: "O Grupo Técnico (SEFAZ, Emater, cooperativas e academia) valida os registros por amostragem.",
+  },
+  {
+    n: "04",
+    icon: Award,
+    t: "ETT Espelho",
+    d: "A trajetória do produtor passa a ser registrada de forma pública, comparável e auditável.",
+  },
+];
+
+const BENEFICIARIOS = [
+  {
+    icon: Leaf,
+    t: "Pequenos Produtores",
+    b: [
+      "Acesso a mercados que exigem origem sustentável",
+      "Caminho para crédito verde e melhores condições",
+      "Reconhecimento sem custo de certificação",
+    ],
+  },
+  {
+    icon: Building2,
+    t: "Grandes Marcas",
+    b: [
+      "Rastreabilidade de Escopo 3 desde a origem",
+      "Mitigação do risco de greenwashing",
+      "Base documental para relatórios e compliance",
+    ],
+  },
+  {
+    icon: Landmark,
+    t: "Governos",
+    b: [
+      "Dados em tempo quase real para políticas públicas",
+      "Eficiência fiscal: reaproveita a base já existente",
+      "Nenhum novo órgão permanente é criado",
+    ],
+  },
+  {
+    icon: TrendingUp,
+    t: "Investidores",
+    b: [
+      "Identificação de cadeias resilientes",
+      "Leitura objetiva de alinhamento ESG",
+      "Comparabilidade entre fornecedores da região",
+    ],
+  },
+];
+
+const FAQ = [
+  {
+    q: "Qual é o lastro do ETT?",
+    a: "Documental e fiscal — não financeiro. Cada registro é ancorado em NF-e ou Nota de Produtor Rural já emitidos e recebidos pelo Estado.",
+  },
+  {
+    q: "O ETT representa crédito de carbono?",
+    a: "Não. É reconhecimento reputacional de trajetória produtiva, não um ativo financeiro negociável.",
+  },
+  {
+    q: "Qual metodologia sustenta o modelo?",
+    a: "Dados fiscais oficiais combinados com governança compartilhada (Elinor Ostrom, Nobel de Economia 2009) e economia comportamental (Richard Thaler, Nobel de Economia 2017).",
+  },
+  {
+    q: "Como o ETT se integra ao mercado de carbono?",
+    a: "Como camada complementar de pré-qualificação da origem. Não substitui o mercado, não emite e não comercializa créditos.",
+  },
+  {
+    q: "Há certificação ou auditoria independente?",
+    a: "Ainda não. O modelo está em fase conceitual; a validação técnica independente é o próximo passo, dentro do piloto.",
+  },
+  {
+    q: "Como é evitada a dupla contagem?",
+    a: "Cada NF-e ou Nota de Produtor Rural possui chave única de acesso registrada na SEFAZ, o que impede duplicidade por construção.",
+  },
+  {
+    q: "O projeto já está em operação?",
+    a: "É um conceito registrado, em busca de parceiro-âncora para um piloto regional de 12 meses.",
+  },
+  {
+    q: "Quem responde tecnicamente pelo programa?",
+    a: "Marcos Fernando Carvalho dos Santos, proponente e autor da concepção (Pouso Alegre, MG).",
+  },
+];
+
+function LandingPage() {
+  const [openFree, setOpenFree] = useState<SectorId | null>(null);
   const freeSectors = SECTORS.filter((s) => !s.restricted);
   const restrictedSectors = SECTORS.filter((s) => s.restricted);
 
-  function requestAccess(id: SectorId) {
-    setPreselected([id]);
-    setShowForm(true);
-    setTimeout(() => {
-      document.getElementById("solicitar")?.scrollIntoView({ behavior: "smooth" });
-    }, 50);
-  }
-
-  function openFreeBlock(id: SectorId) {
-    setOpenFree((cur) => (cur === id ? null : id));
-  }
-
   return (
-    <div className="min-h-screen bg-[#fcfbf8] text-slate-800 font-sans">
-      <header className="print:hidden border-b border-slate-200 bg-white sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <EttLogo />
-          <div className="flex items-center gap-2">
+    <div className="min-h-screen bg-white text-[#212529] font-sans">
+      {/* Nav */}
+      <header className="print:hidden sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+        <div className="mx-auto max-w-7xl px-5 py-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:flex sm:justify-between">
+          <button onClick={() => scrollTo("inicio")} className="min-w-0 flex items-center" aria-label="Início">
+            <EttLogo />
+          </button>
+          <nav className="hidden lg:flex items-center gap-1">
+            {NAV.map((n) => (
+              <button
+                key={n.id}
+                onClick={() => scrollTo(n.id)}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#f5f5f5] hover:text-[#1a5f2a]"
+              >
+                {n.label}
+              </button>
+            ))}
+          </nav>
+          <div className="flex shrink-0 items-center gap-2">
             <a
               href="/adesao"
-              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="hidden sm:inline-flex rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
             >
               Modelo de Adesão
             </a>
             <button
-              onClick={() => window.print()}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              onClick={() => scrollTo("contato")}
+              className="rounded-lg bg-[#1a5f2a] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#164f23]"
             >
-              Imprimir / Salvar PDF
+              Solicitar acesso
             </button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        {/* Hero */}
-        <section className="mb-16 relative">
-          <div className="absolute -top-8 -left-8 w-64 h-64 rounded-full bg-[#008080]/5 blur-3xl -z-0 print:hidden" />
-          <div className="relative">
-            <p className="text-xs uppercase tracking-[0.25em] text-[#008080] font-semibold">
-              Programa ETT · Proposta Institucional · 2026
-            </p>
-            <h1 className="mt-3 text-4xl md:text-6xl font-bold text-slate-900 leading-[1.05] tracking-tight">
-              Espelho de Trajetória
-              <br />
-              <span className="text-[#008080]">e Transparência</span>
+      {/* 1. Hero */}
+      <section id="inicio" className="relative overflow-hidden scroll-mt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a5f2a] to-[#4caf50]" />
+        <div className="absolute inset-0 bg-black/35" />
+        <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Baseado em dados fiscais oficiais · Registro CBL · Lei nº 9.610/1998
+            </span>
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-6xl">
+              Programa ETT — Espelho de Trajetória e Transparência
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
-              Infraestrutura pública regional que valida práticas produtivas
-              sustentáveis a partir de dados fiscais já existentes — NF-e,
-              Nota de Produtor Rural e amostragem de campo.{" "}
-              <span className="text-slate-800 font-medium">
-                Sem criar moeda, sem novo órgão, sem custo obrigatório ao
-                Estado no piloto.
-              </span>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
+              Reconhecimento público de práticas sustentáveis sem burocracia
+              extra. Sem token. Sem criptoativo. Sem custo obrigatório ao Estado.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 print:hidden">
-              <a
-                href="#materiais"
-                className="rounded-lg bg-[#008080] text-white text-sm font-semibold px-5 py-3 hover:bg-[#006666] transition"
-              >
-                Ler materiais públicos
-              </a>
+            <div className="mt-10 flex flex-wrap gap-3">
               <button
-                onClick={() => {
-                  setShowForm(true);
-                  setTimeout(
-                    () =>
-                      document
-                        .getElementById("solicitar")
-                        ?.scrollIntoView({ behavior: "smooth" }),
-                    50,
-                  );
-                }}
-                className="rounded-lg border border-slate-300 bg-white text-slate-800 text-sm font-semibold px-5 py-3 hover:bg-slate-50 transition"
+                onClick={() => scrollTo("como-funciona")}
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#1a5f2a] shadow-lg transition hover:bg-white/90"
               >
-                Solicitar acesso técnico
+                Conheça o Programa <ArrowRight className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => scrollTo("contato")}
+                className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              >
+                Solicitar Acesso aos Documentos Técnicos
               </button>
             </div>
-            <div className="mt-8 flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
-                Sem token · sem criptoativo
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
-                Piloto 12 meses
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
-                Composição planejada do GT-ETT: SEFAZ · Emater · Cooperativas · Academia
-              </span>
-            </div>
-          </div>
-        </section>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Como Funciona — visual */}
-        <section className="mb-16">
-          <div className="mb-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
-              Como funciona
+      {/* 2. O problema */}
+      <section className="bg-[#f8f9fa] py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              O problema
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-1">
-              Quatro passos, dados já existentes
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#212529] md:text-4xl">
+              O reconhecimento não chega a quem produz
             </h2>
-            <p className="mt-2 text-slate-600 max-w-3xl">
-              O ETT não cria nova burocracia: reaproveita o que o produtor
-              já emite e o que o Estado já recebe.
-            </p>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div className="mt-8 rounded-xl border border-[#1a5f2a]/15 bg-white p-8 shadow-sm md:p-10">
+              <p className="text-4xl font-semibold text-[#1a5f2a] md:text-5xl">
+                US$ 5,7 trilhões
+              </p>
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+                em danos ambientais anuais causados pelos 10% maiores
+                consumidores do mundo.
+              </p>
+              <p className="mt-2 text-xs text-slate-500">
+                Fonte: Oxford / Leiden, 2026.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-6 grid gap-5 md:grid-cols-3">
+            {PROBLEMAS.map((p, i) => (
+              <Reveal key={p.t} delay={i * 90}>
+                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p.icon className="h-6 w-6 text-[#2d7d32]" />
+                  <h3 className="mt-4 text-base font-semibold text-[#212529]">
+                    {p.t}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {p.d}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-          <ol className="grid gap-4 md:grid-cols-4">
-            {[
-              {
-                n: "01",
-                t: "Ação sustentável",
-                d: "Produtor adota prática elegível (adubação verde, plantio direto, manejo integrado, etc.).",
-              },
-              {
-                n: "02",
-                t: "Comprovação fiscal",
-                d: "A prática é refletida em NF-e ou Nota de Produtor Rural — sem formulário extra.",
-              },
-              {
-                n: "03",
-                t: "Validação GT-ETT",
-                d: "Grupo Técnico (SEFAZ · Emater · Cooperativas · Academia) valida por amostragem.",
-              },
-              {
-                n: "04",
-                t: "ETT Espelho",
-                d: "Trajetória do produtor é registrada de forma pública, comparável e auditável.",
-              },
-            ].map((step) => (
-              <li
-                key={step.n}
-                className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col"
-              >
-                <span className="text-3xl font-bold text-[#008080]/80 leading-none">
-                  {step.n}
-                </span>
-                <h3 className="mt-3 text-base font-bold text-slate-900">
-                  {step.t}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                  {step.d}
-                </p>
-              </li>
+        </div>
+      </section>
+
+      {/* 3. A solução */}
+      <section id="como-funciona" className="scroll-mt-20 bg-white py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              A solução
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              O Espelho ETT em quatro passos
+            </h2>
+          </Reveal>
+
+          <ol className="mt-10 grid gap-5 md:grid-cols-4">
+            {PASSOS.map((s, i) => (
+              <Reveal key={s.n} delay={i * 90} className="h-full">
+                <li className="relative h-full list-none rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  {i < PASSOS.length - 1 && (
+                    <span className="absolute right-[-14px] top-12 hidden h-px w-6 bg-[#2d7d32]/30 md:block" />
+                  )}
+                  <div className="flex items-center justify-between">
+                    <span className="text-3xl font-semibold leading-none text-[#2d7d32]">
+                      {s.n}
+                    </span>
+                    <s.icon className="h-6 w-6 text-[#2d7d32]" />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold">{s.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {s.d}
+                  </p>
+                </li>
+              </Reveal>
             ))}
           </ol>
-        </section>
 
-        {/* Livre acesso */}
-        <section id="materiais" className="mb-14 scroll-mt-20">
-          <div className="flex items-baseline justify-between mb-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-emerald-700 font-semibold">
-                Acesso livre
-              </p>
-              <h2 className="text-2xl font-bold text-slate-900 mt-1">
-                Materiais de apresentação
-              </h2>
-            </div>
-            <span className="text-xs text-slate-500">
-              {freeSectors.length} documentos
-            </span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {freeSectors.map((s) => {
-              const open = openFree === s.id;
-              return (
-                <div
-                  key={s.id}
-                  className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col"
-                >
-                  <span className="inline-flex self-start items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full mb-3">
-                    ● Livre
-                  </span>
-                  <h3 className="text-base font-bold text-slate-900">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-600 flex-1">
-                    {s.teaser}
-                  </p>
-                  <button
-                    onClick={() => openFreeBlock(s.id)}
-                    className="mt-4 self-start text-sm font-semibold text-[#008080] hover:text-[#006666]"
-                  >
-                    {open ? "− Fechar" : "+ Ler agora"}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-
-          {openFree && (
-            <div className="mt-6 bg-white rounded-2xl border border-slate-200 p-8 md:p-10 shadow-sm">
-              <div className="flex items-start justify-between gap-4 mb-4">
-                <h3 className="text-2xl font-bold text-slate-900">
-                  {getSector(openFree)?.title}
-                </h3>
-                <button
-                  onClick={() => setOpenFree(null)}
-                  className="print:hidden text-sm text-slate-500 hover:text-slate-800"
-                >
-                  Fechar ✕
-                </button>
-              </div>
-              <SectorContent id={openFree} />
-            </div>
-          )}
-        </section>
-
-        {/* Restrito */}
-        <section className="mb-14">
-          <div className="flex items-baseline justify-between mb-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">
-                Acesso mediante liberação
-              </p>
-              <h2 className="text-2xl font-bold text-slate-900 mt-1">
-                Documentos técnicos e regulatórios
-              </h2>
-            </div>
-            <span className="text-xs text-slate-500">
-              {restrictedSectors.length} documentos
-            </span>
-          </div>
-          <p className="text-slate-600 mb-6 max-w-3xl">
-            Cada bloco abaixo detalha uma dimensão sensível do programa
-            (metodologia, regulamento, governança, riscos). O acesso é
-            individual, concedido pelo proponente após análise do vínculo
-            institucional.
-          </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            {restrictedSectors.map((s) => (
-              <div
-                key={s.id}
-                className="relative bg-white border border-slate-200 rounded-2xl p-6 flex flex-col"
-              >
-                <span className="inline-flex self-start items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-1 rounded-full mb-3">
-                  🔒 Restrito
-                </span>
-                <h3 className="text-base font-bold text-slate-900">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 flex-1">
-                  {s.teaser}
-                </p>
-                <button
-                  onClick={() => requestAccess(s.id)}
-                  className="mt-4 self-start rounded-lg bg-[#008080] text-white text-sm font-semibold px-4 py-2 hover:bg-[#006666]"
-                >
-                  Solicitar acesso
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* FAQ Técnico */}
-        <section id="faq" className="mb-14 scroll-mt-20">
-          <div className="mb-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#008080] font-semibold">
-              Perguntas e Respostas Importantes
+          <Reveal delay={120}>
+            <p className="mt-8 rounded-xl bg-[#f5f5f5] p-6 text-base leading-relaxed text-slate-700">
+              O ETT não cria nova burocracia. Reaproveita o que o produtor já
+              emite e o que o Estado já recebe.
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-1">
-              FAQ técnico do Programa ETT
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 4. Quem ganha */}
+      <section className="bg-[#f8f9fa] py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              Impacto
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              Quem ganha com o ETT
             </h2>
-            <p className="mt-2 text-slate-600 max-w-3xl">
-              Respostas objetivas às dúvidas mais frequentes de avaliadores
-              técnicos, órgãos públicos e potenciais parceiros institucionais.
-            </p>
-          </div>
-          <div className="grid gap-3">
-            {[
-              {
-                q: "Qual é o lastro do ETT?",
-                a: "O lastro é documental e fiscal — não financeiro. Cada registro no Espelho de Trajetória e Transparência é ancorado em documentos já emitidos pelo produtor (NF-e, Nota de Produtor Rural) e validado por amostragem pelo GT-ETT. Não há emissão de token, não há criptoativo e não há lastro monetário.",
-              },
-              {
-                q: "O ETT representa crédito de carbono, direito, ativo ou recompensa?",
-                a: "Nenhum dos quatro no sentido de mercado. O ETT é um mecanismo público de reconhecimento reputacional de práticas produtivas sustentáveis, com base em dados fiscais existentes. Não é crédito de carbono (não segue metodologia VCS/Gold Standard), não é ativo financeiro (não é negociável) e não é direito transferível.",
-              },
-              {
-                q: "Qual metodologia ou padrão sustenta o modelo?",
-                a: "O modelo combina três bases já consolidadas: (i) dados fiscais oficiais (SEFAZ/NF-e), (ii) governança compartilhada inspirada em Elinor Ostrom (Nobel 2009, gestão de bens comuns) e (iii) arquitetura de recompensa reputacional fundamentada em economia comportamental (Thaler, Nobel 2017). A metodologia de validação por amostragem segue protocolos usuais da Emater e cooperativas.",
-              },
-              {
-                q: "Como o ETT se integra ao mercado regulado e voluntário de carbono?",
-                a: "Como camada complementar, não concorrente. O ETT pode servir de pré-qualificação reputacional para produtores que futuramente busquem certificação de carbono (SBCE/Lei 15.042/2024 ou mercados voluntários), reduzindo custo de auditoria por já existir trilha documental validada. Não substitui, não emite e não comercializa créditos.",
-              },
-              {
-                q: "Há certificação, auditoria independente ou validação técnica?",
-                a: "Ainda não. O modelo está em fase conceitual, com proteção de autoria pela Lei nº 9.610/1998. A validação técnica independente é justamente o próximo passo previsto no piloto de 12 meses, em parceria com universidade e/ou órgão técnico (Emater, EPAMIG ou equivalente).",
-              },
-              {
-                q: "Como é evitada a dupla contagem e garantida a rastreabilidade?",
-                a: "Pela própria natureza fiscal do lastro: cada NF-e/NPR tem chave única de acesso registrada na SEFAZ, o que impede duplicidade por construção. A rastreabilidade é herdada da infraestrutura tributária existente — o ETT apenas reflete e organiza publicamente esses registros, sem criar nova base paralela.",
-              },
-              {
-                q: "O projeto já está em operação ou é conceito?",
-                a: "É conceito registrado, ainda não em operação. Está em fase de busca por parceiro-âncora (órgão público, cooperativa ou instituição de pesquisa) para viabilizar o piloto regional de 12 meses. A autoria e a anterioridade estão protegidas pela Lei nº 9.610/1998 (Lei de Direitos Autorais)."
-              },
-              {
-                q: "Quem responde tecnicamente pelo programa?",
-                a: "Marcos Fernando Carvalho dos Santos figura como proponente e membro técnico permanente durante toda a vigência do projeto — na qualidade de autor da concepção, sem assumir responsabilidade técnica regulamentar (que caberá aos órgãos e profissionais habilitados do GT-ETT: SEFAZ, Emater, cooperativas e academia).",
-              },
-            ].map((item, i) => (
-              <details
-                key={i}
-                className="group bg-white border border-slate-200 rounded-2xl p-5 open:shadow-sm"
-              >
-                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
-                  <h3 className="text-base font-semibold text-slate-900 leading-snug">
-                    {item.q}
-                  </h3>
-                  <span className="text-[#008080] text-xl leading-none shrink-0 group-open:rotate-45 transition-transform">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                  {item.a}
-                </p>
-              </details>
+          </Reveal>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {BENEFICIARIOS.map((c, i) => (
+              <Reveal key={c.t} delay={i * 80} className="h-full">
+                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <c.icon className="h-6 w-6 text-[#2d7d32]" />
+                  <h3 className="mt-4 text-base font-semibold">{c.t}</h3>
+                  <ul className="mt-3 space-y-2">
+                    {c.b.map((b) => (
+                      <li key={b} className="flex gap-2 text-sm text-slate-600">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#4caf50]" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
+      {/* 5. Materiais e documentos */}
+      <section id="documentos" className="scroll-mt-20 bg-white py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              Biblioteca
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              Materiais e documentos
+            </h2>
+          </Reveal>
 
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {/* Bloco A */}
+            <Reveal>
+              <div className="h-full rounded-xl border border-[#4caf50]/30 bg-[#4caf50]/8 p-7">
+                <div className="flex items-center gap-3">
+                  <Unlock className="h-5 w-5 text-[#1a5f2a]" />
+                  <h3 className="text-lg font-semibold text-[#1a5f2a]">
+                    Materiais Públicos
+                  </h3>
+                </div>
+                <ul className="mt-5 space-y-2">
+                  {freeSectors.map((s) => (
+                    <li key={s.id}>
+                      <button
+                        onClick={() =>
+                          setOpenFree((cur) => (cur === s.id ? null : s.id))
+                        }
+                        className="flex w-full items-start gap-3 rounded-lg border border-transparent bg-white/70 px-4 py-3 text-left transition hover:border-[#4caf50]/40 hover:bg-white"
+                      >
+                        <FileText className="mt-0.5 h-4 w-4 shrink-0 text-[#2d7d32]" />
+                        <span className="min-w-0">
+                          <span className="block text-sm font-semibold">
+                            {s.title}
+                          </span>
+                          <span className="block text-xs text-slate-600">
+                            {s.teaser}
+                          </span>
+                        </span>
+                      </button>
+                      {openFree === s.id && (
+                        <div className="mt-2 rounded-lg border border-slate-200 bg-white p-5">
+                          <SectorContent id={s.id} />
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => window.print()}
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#1a5f2a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#164f23]"
+                >
+                  <Download className="h-4 w-4" /> Baixar Gratuitamente
+                </button>
+              </div>
+            </Reveal>
 
-        {/* Formulário */}
-        <section
-          id="solicitar"
-          className="print:hidden mb-10 rounded-2xl border-2 border-dashed border-[#008080]/40 bg-[#008080]/5 p-8"
-        >
-          <h2 className="text-2xl font-bold text-slate-900 text-center">
-            Solicitar acesso aos blocos restritos
-          </h2>
-          <p className="mt-2 text-slate-600 max-w-2xl mx-auto text-center">
-            Cada pedido é analisado individualmente. Após aprovação, você
-            recebe um link único de acesso apenas aos blocos liberados.
-          </p>
-          {!showForm ? (
-            <div className="text-center mt-6">
-              <button
-                onClick={() => setShowForm(true)}
-                className="rounded-lg bg-[#008080] text-white font-semibold px-6 py-3 hover:bg-[#006666]"
+            {/* Bloco B */}
+            <Reveal delay={100}>
+              <div className="h-full rounded-xl border border-slate-200 bg-[#f5f5f5] p-7">
+                <div className="flex items-center gap-3">
+                  <Lock className="h-5 w-5 text-slate-700" />
+                  <h3 className="text-lg font-semibold text-slate-800">
+                    Documentos Técnicos e Regulatórios
+                  </h3>
+                </div>
+                <ul className="mt-5 space-y-2">
+                  {restrictedSectors.map((s) => (
+                    <li
+                      key={s.id}
+                      className="flex items-start gap-3 rounded-lg bg-white px-4 py-3"
+                    >
+                      <Lock className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                      <span className="min-w-0">
+                        <span className="block text-sm font-semibold">
+                          {s.title}
+                        </span>
+                        <span className="block text-xs text-slate-500">
+                          {s.teaser}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => scrollTo("contato")}
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                >
+                  Solicitar Acesso <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FAQ */}
+      <section id="faq" className="scroll-mt-20 bg-[#f8f9fa] py-20">
+        <div className="mx-auto max-w-4xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              Perguntas e respostas importantes
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              FAQ técnico
+            </h2>
+          </Reveal>
+          <Reveal delay={80}>
+            <Accordion type="single" collapsible className="mt-8">
+              {FAQ.map((f) => (
+                <AccordionItem
+                  key={f.q}
+                  value={f.q}
+                  className="mb-3 rounded-xl border border-slate-200 bg-white px-5"
+                >
+                  <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-slate-600">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 7. Contato */}
+      <section id="contato" className="scroll-mt-20 bg-white py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
+              Contato
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              Contato e solicitação de acesso
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+            <Reveal>
+              <AccessForm />
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="h-full rounded-xl border border-slate-200 bg-[#f5f5f5] p-7">
+                <h3 className="text-base font-semibold">Proponente técnico</h3>
+                <p className="mt-1 text-sm text-slate-700">
+                  Marcos Fernando C. dos Santos
+                </p>
+                <ul className="mt-5 space-y-3 text-sm text-slate-600">
+                  <li className="flex items-center gap-3">
+                    <MessageCircle className="h-4 w-4 shrink-0 text-[#2d7d32]" />
+                    WhatsApp: (35) 99934-0088
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <MapPin className="h-4 w-4 shrink-0 text-[#2d7d32]" />
+                    Pouso Alegre, MG
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <ShieldCheck className="h-4 w-4 shrink-0 text-[#2d7d32]" />
+                    Registro CBL — Lei nº 9.610/1998
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Footer */}
+      <footer className="border-t border-slate-200 bg-[#f8f9fa] py-12">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <EttLogo />
+            <nav className="flex flex-wrap gap-4">
+              {NAV.map((n) => (
+                <button
+                  key={n.id}
+                  onClick={() => scrollTo(n.id)}
+                  className="text-sm text-slate-600 transition hover:text-[#1a5f2a]"
+                >
+                  {n.label}
+                </button>
+              ))}
+            </nav>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="LinkedIn"
+                className="rounded-lg border border-slate-300 p-2 text-slate-600 transition hover:text-[#1a5f2a]"
               >
-                Abrir formulário
-              </button>
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href="https://wa.me/5535999340088"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="WhatsApp"
+                className="rounded-lg border border-slate-300 p-2 text-slate-600 transition hover:text-[#1a5f2a]"
+              >
+                <MessageCircle className="h-4 w-4" />
+              </a>
+              <a
+                href="mailto:contato@programaett.com.br"
+                aria-label="E-mail"
+                className="rounded-lg border border-slate-300 p-2 text-slate-600 transition hover:text-[#1a5f2a]"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
             </div>
-          ) : (
-            <RequestForm preselected={preselected} />
-          )}
-        </section>
-
-        <section className="rounded-2xl bg-slate-900 text-slate-100 p-8">
-          <p className="font-semibold">
-            Proponente Técnico: Marcos Fernando C. dos Santos — Pouso Alegre, MG
+          </div>
+          <p className="mt-8 max-w-3xl text-xs leading-relaxed text-slate-500">
+            Programa ETT — Modelo de Infraestrutura Regional. Registro CBL. Não
+            constitui oferta de investimento, criptoativo ou valor mobiliário.
           </p>
-          <p className="mt-1 text-slate-300 text-sm">
-            Programa ETT — Modelo de Infraestrutura Regional · WhatsApp: (35) 99934-0088
-          </p>
-        </section>
-      </main>
+        </div>
+      </footer>
     </div>
   );
 }
 
-function RequestForm({ preselected }: { preselected: SectorId[] }) {
-  const restricted = SECTORS.filter((s) => s.restricted);
+const VINCULOS = [
+  "Produtor",
+  "Cooperativa",
+  "Órgão Público",
+  "Empresa",
+  "Investidor",
+  "Academia",
+  "Outro",
+];
+
+function AccessForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [institution, setInstitution] = useState("");
-  const [role, setRole] = useState("");
-  const [justification, setJustification] = useState("");
-  const [selected, setSelected] = useState<SectorId[]>(preselected);
+  const [vinculo, setVinculo] = useState("");
+  const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
-  const [consent, setConsent] = useState(false);
 
-  function toggle(id: SectorId) {
-    setSelected((s) =>
-      s.includes(id) ? s.filter((x) => x !== id) : [...s, id],
-    );
-  }
+  const field =
+    "w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#2d7d32] focus:ring-2 focus:ring-[#4caf50]/25";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (selected.length === 0) {
-      setError("Selecione pelo menos um bloco.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
+      setError("Informe um e-mail válido.");
       return;
     }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
-      setError("E-mail inválido.");
+    if (!vinculo) {
+      setError("Selecione o tipo de vínculo.");
       return;
     }
     if (!consent) {
-      setError("É necessário autorizar o tratamento dos dados (LGPD).");
+      setError("Confirme o interesse institucional para enviar.");
       return;
     }
     setBusy(true);
@@ -441,9 +665,11 @@ function RequestForm({ preselected }: { preselected: SectorId[] }) {
       name: name.trim(),
       email: email.trim(),
       institution: institution.trim(),
-      role_title: role.trim(),
-      justification: justification.trim(),
-      sectors_requested: selected,
+      role_title: vinculo,
+      justification: [message.trim(), phone.trim() && `Telefone: ${phone.trim()}`]
+        .filter(Boolean)
+        .join("\n"),
+      sectors_requested: SECTORS.filter((s) => s.restricted).map((s) => s.id),
     });
     setBusy(false);
     if (dbError) {
@@ -455,108 +681,98 @@ function RequestForm({ preselected }: { preselected: SectorId[] }) {
 
   if (done)
     return (
-      <div className="mt-6 text-center">
-        <p className="text-lg font-semibold text-emerald-700">
-          ✓ Pedido enviado
+      <div className="rounded-xl border border-[#4caf50]/40 bg-[#4caf50]/10 p-8">
+        <CheckCircle2 className="h-6 w-6 text-[#1a5f2a]" />
+        <p className="mt-3 text-lg font-semibold text-[#1a5f2a]">
+          Solicitação enviada
         </p>
-        <p className="mt-2 text-slate-600">
-          Você receberá o link de acesso assim que o proponente aprovar sua
+        <p className="mt-2 text-sm text-slate-600">
+          Você receberá o link de acesso assim que o proponente aprovar a
           solicitação.
         </p>
       </div>
     );
 
   return (
-    <form onSubmit={submit} className="mt-6 max-w-2xl mx-auto grid gap-3">
-      <input
-        required
-        maxLength={120}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Nome completo"
-        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3"
-      />
-      <div className="grid gap-3 md:grid-cols-2">
-        <input
-          type="email"
-          required
-          maxLength={254}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail institucional"
-          className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3"
-        />
+    <form
+      onSubmit={submit}
+      className="grid gap-4 rounded-xl border border-slate-200 bg-white p-7 shadow-sm"
+    >
+      <div className="grid gap-4 md:grid-cols-2">
         <input
           required
           maxLength={120}
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          placeholder="Cargo / função"
-          className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Nome completo"
+          className={field}
+        />
+        <input
+          required
+          type="email"
+          maxLength={254}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail"
+          className={field}
+        />
+        <input
+          maxLength={40}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Telefone"
+          className={field}
+        />
+        <input
+          required
+          maxLength={160}
+          value={institution}
+          onChange={(e) => setInstitution(e.target.value)}
+          placeholder="Instituição / Órgão"
+          className={field}
         />
       </div>
-      <input
+      <select
         required
-        maxLength={160}
-        value={institution}
-        onChange={(e) => setInstitution(e.target.value)}
-        placeholder="Instituição / órgão / empresa"
-        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3"
-      />
+        value={vinculo}
+        onChange={(e) => setVinculo(e.target.value)}
+        className={field}
+      >
+        <option value="">Tipo de vínculo</option>
+        {VINCULOS.map((v) => (
+          <option key={v} value={v}>
+            {v}
+          </option>
+        ))}
+      </select>
       <textarea
-        required
-        maxLength={2000}
         rows={4}
-        value={justification}
-        onChange={(e) => setJustification(e.target.value)}
-        placeholder="Justificativa: para qual finalidade o acesso é solicitado?"
-        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 resize-none"
+        maxLength={1500}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Mensagem"
+        className={field}
       />
-      <div>
-        <p className="text-sm font-medium text-slate-700 mb-2">
-          Blocos desejados:
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {restricted.map((s) => {
-            const on = selected.includes(s.id);
-            return (
-              <button
-                type="button"
-                key={s.id}
-                onClick={() => toggle(s.id)}
-                className={`text-sm px-3 py-2 rounded-full border ${
-                  on
-                    ? "bg-[#008080] text-white border-[#008080]"
-                    : "bg-white text-slate-700 border-slate-300"
-                }`}
-              >
-                {on ? "✓ " : ""}
-                {s.title}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <label className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed mt-1">
+      <label className="flex items-start gap-3 text-sm text-slate-600">
         <input
           type="checkbox"
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
-          className="mt-0.5 h-4 w-4 accent-[#008080]"
+          className="mt-1 h-4 w-4 accent-[#1a5f2a]"
         />
         <span>
-          Autorizo o tratamento dos dados fornecidos exclusivamente para
-          análise deste pedido e envio do link de acesso, conforme a Lei nº
-          13.709/2018 (LGPD). Os dados não são compartilhados com terceiros.
+          Declaro interesse institucional no Programa ETT e autorizo o contato e
+          o tratamento dos dados informados (LGPD).
         </span>
       </label>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <button
         type="submit"
         disabled={busy}
-        className="rounded-lg bg-[#008080] text-white font-semibold py-3 hover:bg-[#006666] disabled:opacity-60"
+        className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1a5f2a] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#164f23] disabled:opacity-60"
       >
-        {busy ? "Enviando..." : "Enviar pedido"}
+        <Users className="h-4 w-4" />
+        {busy ? "Enviando…" : "Enviar Solicitação"}
       </button>
     </form>
   );
