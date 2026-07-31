@@ -186,35 +186,23 @@ const BENEFICIARIOS = [
 const FAQ = [
   {
     q: "Qual é o lastro do ETT?",
-    a: "Documental e fiscal — não financeiro. Cada registro é ancorado em NF-e ou Nota de Produtor Rural já emitidos e recebidos pelo Estado.",
+    a: "Documental e fiscal. Cada registro utiliza NF-e ou Nota de Produtor Rural já emitidas e recebidas pelo Estado. Não é ativo financeiro.",
   },
   {
-    q: "O ETT representa crédito de carbono?",
-    a: "Não. É reconhecimento reputacional de trajetória produtiva, não um ativo financeiro negociável.",
+    q: "O ETT é crédito de carbono?",
+    a: "Não. É reconhecimento reputacional, não negociável. Pode servir de pré-qualificação para uma futura certificação.",
   },
   {
-    q: "Qual metodologia sustenta o modelo?",
-    a: "Dados fiscais oficiais combinados com governança compartilhada (Elinor Ostrom, Nobel de Economia 2009) e economia comportamental (Richard Thaler, Nobel de Economia 2017).",
-  },
-  {
-    q: "Como o ETT se integra ao mercado de carbono?",
-    a: "Como camada complementar de pré-qualificação da origem. Não substitui o mercado, não emite e não comercializa créditos.",
-  },
-  {
-    q: "Há certificação ou auditoria independente?",
-    a: "Ainda não. O modelo está em fase conceitual; a validação técnica independente é o próximo passo, dentro do piloto.",
-  },
-  {
-    q: "Como é evitada a dupla contagem?",
-    a: "Cada NF-e ou Nota de Produtor Rural possui chave única de acesso registrada na SEFAZ, o que impede duplicidade por construção.",
+    q: "Como evita a dupla contagem?",
+    a: "Cada NF-e possui chave única registrada na SEFAZ. É impossível duplicar por construção.",
   },
   {
     q: "O projeto já está em operação?",
-    a: "É um conceito registrado, em busca de parceiro-âncora para um piloto regional de 12 meses.",
+    a: "É um conceito registrado (CBL), em busca de parceiro-âncora para um piloto de 12 meses em Minas Gerais.",
   },
   {
-    q: "Quem responde tecnicamente pelo programa?",
-    a: "Marcos Fernando Carvalho dos Santos, proponente e autor da concepção (Pouso Alegre, MG).",
+    q: "Quem responde tecnicamente?",
+    a: "Marcos Fernando Carvalho dos Santos, proponente e autor (Pouso Alegre, MG).",
   },
 ];
 
