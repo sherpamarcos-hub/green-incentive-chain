@@ -557,7 +557,8 @@ function LandingPage() {
       {/* 4. Quem ganha */}
 
 
-      <section className="bg-[#f8f9fa] py-20">
+      <section id="quem-ganha" className="scroll-mt-20 bg-[#f8f9fa] py-20">
+
         <div className="mx-auto max-w-7xl px-5">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2d7d32]">
