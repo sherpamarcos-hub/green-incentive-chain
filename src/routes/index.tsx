@@ -376,12 +376,12 @@ function LandingPage() {
             {/* linha conectora desktop */}
             <span
               aria-hidden
-              className="absolute left-0 right-0 top-6 hidden h-0.5 bg-[#4caf50]/40 md:block"
+              className="absolute left-0 right-0 top-[5px] hidden h-0.5 bg-[#4caf50]/40 md:block"
             />
             {/* linha conectora mobile */}
             <span
               aria-hidden
-              className="absolute bottom-6 left-6 top-6 w-0.5 bg-[#4caf50]/40 md:hidden"
+              className="absolute bottom-6 left-[23px] top-3 w-0.5 bg-[#4caf50]/40 md:hidden"
             />
             <ol className="grid gap-8 md:grid-cols-4 md:gap-5">
               {PASSOS.map((s, i) => (
@@ -389,9 +389,9 @@ function LandingPage() {
                   <li className="relative flex list-none gap-5 md:block">
                     <span
                       aria-hidden
-                      className="relative z-10 mt-3 flex h-3 w-3 shrink-0 rounded-full bg-[#4caf50] ring-4 ring-white md:ml-0 md:mt-0"
-                      style={{ marginLeft: "1.125rem" }}
+                      className="relative z-10 ml-[18px] mt-3 flex h-3 w-3 shrink-0 rounded-full bg-[#4caf50] ring-4 ring-white md:ml-0 md:mt-0"
                     />
+
                     <div className="md:mt-8">
                       <div className="flex items-center gap-3">
                         <span className="text-4xl font-semibold leading-none text-[#1a5f2a]">
