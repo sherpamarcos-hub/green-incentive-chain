@@ -734,7 +734,7 @@ function LandingPage() {
               Perguntas e respostas importantes
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              FAQ técnico
+              Perguntas Frequentes
             </h2>
           </Reveal>
           <Reveal delay={80}>
