@@ -211,6 +211,95 @@ function AdesaoPage() {
           </p>
         </section>
 
+        {/* Modalidades de vinculação */}
+        <section className="mt-14">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Modalidades de vinculação do proponente
+          </h2>
+          <p className="mt-3 text-slate-600 leading-relaxed">
+            A retribuição prevista na Camada II pode ser formalizada por
+            diferentes instrumentos, conforme a natureza jurídica do aderente e
+            a orientação de sua assessoria jurídica. As vias abaixo são
+            alternativas entre si — não cumulativas.
+          </p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <ModoCard
+              tag="Via principal"
+              title="Licenciamento de propriedade intelectual"
+              body="Contrato de licença de uso não exclusiva do Programa ETT, obra autoral protegida, com remuneração periódica, prazo determinado e escopo territorial definido. Não transfere titularidade."
+            />
+            <ModoCard
+              tag="Via principal"
+              title="Bolsa de pesquisa e inovação"
+              body="Vinculação do proponente a instituição de ensino ou pesquisa partícipe do GT-ETT, com bolsa custeada por editais de fomento à inovação. Fortalece a validação técnica independente do piloto."
+            />
+            <ModoCard
+              tag="Alternativa"
+              title="Prestação de serviço técnico"
+              body="Contratação direta de serviço técnico especializado pelo aderente, observados os limites, a publicidade e o processo seletivo documentado exigidos pela legislação aplicável ao contratante."
+            />
+          </div>
+
+          <p className="mt-6 text-sm text-slate-500 leading-relaxed">
+            A escolha da modalidade é decisão do aderente. O proponente não
+            condiciona a adesão ao Programa a nenhuma via específica de
+            remuneração.
+          </p>
+        </section>
+
+        {/* Salvaguardas de integridade */}
+        <section className="mt-14 rounded-2xl border border-slate-300 bg-slate-50 p-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-600 font-semibold">
+            Integridade
+          </p>
+          <h2 className="mt-2 text-2xl font-bold text-slate-900">
+            Salvaguardas aplicáveis à remuneração do proponente
+          </h2>
+          <p className="mt-3 text-slate-700 leading-relaxed">
+            Qualquer vínculo remunerado entre o proponente e o aderente observa,
+            desde a origem, as seguintes salvaguardas — assumidas de forma
+            voluntária e verificável:
+          </p>
+          <ol className="mt-5 space-y-3 text-sm text-slate-700">
+            {[
+              [
+                "Processo seletivo documentado",
+                "Ainda que simplificado, precedido de edital ou chamamento público quando o contratante for ente da administração pública.",
+              ],
+              [
+                "Contrato formal",
+                "Com escopo, prazo, valor, forma de pagamento e obrigação de prestação de contas expressamente definidos.",
+              ],
+              [
+                "Limite temporal",
+                "Vínculo atrelado à vigência do GT-ETT, com prazo determinado (referência: 24 meses), renovável mediante avaliação de resultados.",
+              ],
+              [
+                "Prestação de contas trimestral",
+                "Relatório das entregas do período: reuniões, documentos produzidos, articulação institucional e marcos metodológicos.",
+              ],
+              [
+                "Isenção de conflito de interesse",
+                "O proponente se abstém de votar ou deliberar em matéria que afete direta ou indiretamente a sua própria remuneração.",
+              ],
+            ].map(([t, d], i) => (
+              <li key={t} className="flex gap-3">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#008080] text-xs font-bold text-white">
+                  {i + 1}
+                </span>
+                <span>
+                  <strong className="text-slate-900">{t}</strong> — {d}
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 text-xs text-slate-500 leading-relaxed">
+            As salvaguardas acima integram, por referência, qualquer instrumento
+            contratual firmado com base neste Modelo de Adesão.
+          </p>
+        </section>
+
         {/* CTA */}
         <section className="mt-14 rounded-2xl bg-slate-900 text-slate-100 p-8 text-center">
           <h2 className="text-2xl font-bold">
