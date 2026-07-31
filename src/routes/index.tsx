@@ -125,7 +125,36 @@ const PASSOS = [
   },
 ];
 
+const PANORAMA: { p: string; f: string; g: string }[] = [
+  {
+    p: "ABC+ / RenovAgro",
+    f: "Financia projetos de baixo carbono de maior porte, com limite de crédito elevado e juros de mercado subsidiado.",
+    g: "Não acompanha práticas operacionais no nível da propriedade. O ETT registra a ação cotidiana, de menor escala, que não chega a virar projeto financiável.",
+  },
+  {
+    p: "Pronaf Eco / Agroecologia",
+    f: "Crédito subsidiado dirigido à agricultura familiar, com taxas reduzidas.",
+    g: "O acesso efetivo é minoritário e as linhas ambientais representam fração marginal da carteira. O ETT reconhece a prática sem exigir operação de crédito.",
+  },
+  {
+    p: "CAR",
+    f: "Cadastro ambiental rural obrigatório, com milhões de registros declarados.",
+    g: "É instrumento de cadastro, não de reconhecimento. Muitos registros seguem pendentes de análise. O ETT não depende de validação cadastral para começar.",
+  },
+  {
+    p: "SeloVerde MG",
+    f: "Rastreabilidade socioambiental para cadeias exportadoras de café, soja e pecuária.",
+    g: "Voltado à conformidade de exportação e a empresas de médio e grande porte. O ETT parte da nota fiscal do produtor que abastece o mercado local.",
+  },
+  {
+    p: "Certificações privadas",
+    f: "Selos como orgânico, comércio justo e certificações de origem, auditados por terceiros.",
+    g: "Custo anual de auditoria inviável para pequenos produtores. O ETT usa registro já existente, sem taxa de certificação.",
+  },
+];
+
 const BENEFICIARIOS = [
+
   {
     icon: Leaf,
     t: "Pequenos Produtores",
