@@ -75,6 +75,7 @@ function scrollTo(id: string) {
 const NAV = [
   { id: "inicio", label: "Início" },
   { id: "como-funciona", label: "Como Funciona" },
+  { id: "quem-ganha", label: "Quem Ganha" },
   { id: "documentos", label: "Documentos" },
   { id: "faq", label: "FAQ" },
   { id: "contato", label: "Contato" },
@@ -83,20 +84,24 @@ const NAV = [
 const PROBLEMAS = [
   {
     icon: Ban,
-    t: "Selos tradicionais excluem PMEs",
-    d: "Auditorias de certificação têm custo proibitivo e exigem estrutura documental que o pequeno produtor não tem.",
+    tone: "text-[#c62828]/80",
+    t: "Selos custam caro",
+    d: "Auditorias de R$ 15–50 mil por ano excluem quem produz de forma limpa, mas sem capital.",
+  },
+  {
+    icon: FileText,
+    tone: "text-slate-400",
+    t: "O SBCE ignora a produção primária",
+    d: "O mercado regulado de carbono exclui o pequeno produtor rural por definição legal.",
   },
   {
     icon: AlertTriangle,
-    t: "SBCE exclui produção primária agropecuária",
-    d: "O produtor rural fica fora do mercado regulado de carbono, mesmo adotando práticas de baixa emissão.",
-  },
-  {
-    icon: ShieldCheck,
-    t: "Greenwashing compromete cadeias",
-    d: "Sem rastreabilidade real na origem, declarações de sustentabilidade viram risco reputacional e jurídico.",
+    tone: "text-amber-500",
+    t: "Greenwashing sem rastreio",
+    d: "Grandes marcas precisam de dados reais da cadeia. O produtor não tem como provar o que faz.",
   },
 ];
+
 
 const PASSOS = [
   {
