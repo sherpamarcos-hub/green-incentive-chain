@@ -592,28 +592,28 @@ function LandingPage() {
               Impacto
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              Quem ganha com o ETT
+              Valor para toda a cadeia
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {BENEFICIARIOS.map((c, i) => (
               <Reveal key={c.t} delay={i * 80} className="h-full">
-                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <c.icon className="h-6 w-6 text-[#2d7d32]" />
-                  <h3 className="mt-4 text-base font-semibold">{c.t}</h3>
-                  <ul className="mt-3 space-y-2">
-                    {c.b.map((b) => (
-                      <li key={b} className="flex gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#4caf50]" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="h-full rounded-xl border border-[#e0e0e0] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f5e9]">
+                    <c.icon className="h-6 w-6 text-[#1a5f2a]" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold text-[#212529]">
+                    {c.t}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {c.d}
+                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
+
       </section>
 
       {/* 5. Materiais e documentos */}
