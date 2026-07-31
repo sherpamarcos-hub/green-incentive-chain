@@ -805,7 +805,9 @@ function LandingPage() {
           </div>
           <p className="mt-8 max-w-3xl text-xs leading-relaxed text-slate-500">
             Programa ETT — Modelo de Infraestrutura Regional. Registro CBL. Não
-            constitui oferta de investimento, criptoativo ou valor mobiliário.
+            constitui oferta de investimento, ativo financeiro negociável ou
+            valor mobiliário.
+
           </p>
         </div>
       </footer>
