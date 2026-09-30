@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- O convite acadêmico é uma minuta pública sem documentos restritos; o acesso individual continua sujeito à aprovação separada, para evitar liberação antes da identificação do professor.
