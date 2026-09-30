@@ -20,6 +20,7 @@ export const Route = createFileRoute("/adesao")({
           "Cessão de uso do Programa ETT + participação técnica do proponente no GT-ETT enquanto vigente o Programa.",
       },
       { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary" },
       {
         property: "og:url",
         content: `${SITE_URL}/adesao`,

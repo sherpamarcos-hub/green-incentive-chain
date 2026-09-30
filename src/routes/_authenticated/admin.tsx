@@ -8,6 +8,11 @@ export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
       { title: "Painel — Pedidos de acesso ETT" },
+      { name: "description", content: "Análise de pedidos de acesso aos materiais do Programa ETT." },
+      { property: "og:title", content: "Pedidos de acesso — Programa ETT" },
+      { property: "og:description", content: "Análise de pedidos de acesso aos materiais do Programa ETT." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
     ],
   }),
