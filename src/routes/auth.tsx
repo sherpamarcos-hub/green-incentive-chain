@@ -7,6 +7,11 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Acesso administrativo — ETT" },
+      { name: "description", content: "Entrada administrativa do Programa ETT para gestão de solicitações de acesso." },
+      { property: "og:title", content: "Acesso administrativo — Programa ETT" },
+      { property: "og:description", content: "Entrada administrativa do Programa ETT para gestão de solicitações de acesso." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
     ],
   }),

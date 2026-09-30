@@ -9,28 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TermoInteresseRouteImport } from './routes/termo-interesse'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AdesaoRouteImport } from './routes/adesao'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AcessoTokenRouteImport } from './routes/acesso.$token'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AdesaoRouteImport } from './routes/adesao'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AvaliacaoAcademicaRouteImport } from './routes/avaliacao-academica'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermoInteresseRouteImport } from './routes/termo-interesse'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AcessoTokenRouteImport } from './routes/acesso.$token'
 
-const TermoInteresseRoute = TermoInteresseRouteImport.update({
-  id: '/termo-interesse',
-  path: '/termo-interesse',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdesaoRoute = AdesaoRouteImport.update({
@@ -38,18 +33,24 @@ const AdesaoRoute = AdesaoRouteImport.update({
   path: '/adesao',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AvaliacaoAcademicaRoute = AvaliacaoAcademicaRouteImport.update({
+  id: '/avaliacao-academica',
+  path: '/avaliacao-academica',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AcessoTokenRoute = AcessoTokenRouteImport.update({
-  id: '/acesso/$token',
-  path: '/acesso/$token',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermoInteresseRoute = TermoInteresseRouteImport.update({
+  id: '/termo-interesse',
+  path: '/termo-interesse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -57,11 +58,17 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AcessoTokenRoute = AcessoTokenRouteImport.update({
+  id: '/acesso/$token',
+  path: '/acesso/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
+  '/avaliacao-academica': typeof AvaliacaoAcademicaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termo-interesse': typeof TermoInteresseRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
+  '/avaliacao-academica': typeof AvaliacaoAcademicaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termo-interesse': typeof TermoInteresseRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
+  '/avaliacao-academica': typeof AvaliacaoAcademicaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termo-interesse': typeof TermoInteresseRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
@@ -93,6 +102,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adesao'
     | '/auth'
+    | '/avaliacao-academica'
     | '/sitemap.xml'
     | '/termo-interesse'
     | '/admin'
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adesao'
     | '/auth'
+    | '/avaliacao-academica'
     | '/sitemap.xml'
     | '/termo-interesse'
     | '/admin'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/adesao'
     | '/auth'
+    | '/avaliacao-academica'
     | '/sitemap.xml'
     | '/termo-interesse'
     | '/_authenticated/admin'
@@ -123,6 +135,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AdesaoRoute: typeof AdesaoRoute
   AuthRoute: typeof AuthRoute
+  AvaliacaoAcademicaRoute: typeof AvaliacaoAcademicaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermoInteresseRoute: typeof TermoInteresseRoute
   AcessoTokenRoute: typeof AcessoTokenRoute
@@ -130,32 +143,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/termo-interesse': {
-      id: '/termo-interesse'
-      path: '/termo-interesse'
-      fullPath: '/termo-interesse'
-      preLoaderRoute: typeof TermoInteresseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/adesao': {
-      id: '/adesao'
-      path: '/adesao'
-      fullPath: '/adesao'
-      preLoaderRoute: typeof AdesaoRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -165,18 +157,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/adesao': {
+      id: '/adesao'
+      path: '/adesao'
+      fullPath: '/adesao'
+      preLoaderRoute: typeof AdesaoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/acesso/$token': {
-      id: '/acesso/$token'
-      path: '/acesso/$token'
-      fullPath: '/acesso/$token'
-      preLoaderRoute: typeof AcessoTokenRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/avaliacao-academica': {
+      id: '/avaliacao-academica'
+      path: '/avaliacao-academica'
+      fullPath: '/avaliacao-academica'
+      preLoaderRoute: typeof AvaliacaoAcademicaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termo-interesse': {
+      id: '/termo-interesse'
+      path: '/termo-interesse'
+      fullPath: '/termo-interesse'
+      preLoaderRoute: typeof TermoInteresseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin'
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/acesso/$token': {
+      id: '/acesso/$token'
+      path: '/acesso/$token'
+      fullPath: '/acesso/$token'
+      preLoaderRoute: typeof AcessoTokenRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -205,6 +225,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AdesaoRoute: AdesaoRoute,
   AuthRoute: AuthRoute,
+  AvaliacaoAcademicaRoute: AvaliacaoAcademicaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermoInteresseRoute: TermoInteresseRoute,
   AcessoTokenRoute: AcessoTokenRoute,

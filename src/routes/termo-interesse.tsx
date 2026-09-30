@@ -19,6 +19,7 @@ export const Route = createFileRoute("/termo-interesse")({
           "Documento de manifestação formal de interesse no Programa ETT, com reconhecimento de autoria e abertura de negociação.",
       },
       { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:url", content: `${SITE_URL}/termo-interesse` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/termo-interesse` }],
