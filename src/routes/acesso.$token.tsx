@@ -67,7 +67,7 @@ function AcessoPage() {
 
   const granted = (row.sectors_granted as SectorId[])
     .map((id) => getSector(id))
-    .filter(Boolean);
+    .filter((sector): sector is NonNullable<typeof sector> => sector !== undefined);
 
   return (
     <div className="min-h-screen bg-[#fcfbf8]">
