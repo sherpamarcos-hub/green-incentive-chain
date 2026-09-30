@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermoInteresseRouteImport } from './routes/termo-interesse'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as AvaliacaoAcademicaRouteImport } from './routes/avaliacao-academica'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdesaoRouteImport } from './routes/adesao'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
@@ -26,6 +27,11 @@ const TermoInteresseRoute = TermoInteresseRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvaliacaoAcademicaRoute = AvaliacaoAcademicaRouteImport.update({
+  id: '/avaliacao-academica',
+  path: '/avaliacao-academica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -62,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
+  '/avaliacao-academica': typeof AvaliacaoAcademicaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termo-interesse': typeof TermoInteresseRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
+  '/avaliacao-academica': typeof AvaliacaoAcademicaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termo-interesse': typeof TermoInteresseRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/adesao': typeof AdesaoRoute
   '/auth': typeof AuthRoute
+  '/avaliacao-academica': typeof AvaliacaoAcademicaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termo-interesse': typeof TermoInteresseRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
@@ -93,6 +102,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adesao'
     | '/auth'
+    | '/avaliacao-academica'
     | '/sitemap.xml'
     | '/termo-interesse'
     | '/admin'
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adesao'
     | '/auth'
+    | '/avaliacao-academica'
     | '/sitemap.xml'
     | '/termo-interesse'
     | '/admin'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/adesao'
     | '/auth'
+    | '/avaliacao-academica'
     | '/sitemap.xml'
     | '/termo-interesse'
     | '/_authenticated/admin'
@@ -123,6 +135,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AdesaoRoute: typeof AdesaoRoute
   AuthRoute: typeof AuthRoute
+  AvaliacaoAcademicaRoute: typeof AvaliacaoAcademicaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermoInteresseRoute: typeof TermoInteresseRoute
   AcessoTokenRoute: typeof AcessoTokenRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/avaliacao-academica': {
+      id: '/avaliacao-academica'
+      path: '/avaliacao-academica'
+      fullPath: '/avaliacao-academica'
+      preLoaderRoute: typeof AvaliacaoAcademicaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -205,6 +225,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AdesaoRoute: AdesaoRoute,
   AuthRoute: AuthRoute,
+  AvaliacaoAcademicaRoute: AvaliacaoAcademicaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermoInteresseRoute: TermoInteresseRoute,
   AcessoTokenRoute: AcessoTokenRoute,
