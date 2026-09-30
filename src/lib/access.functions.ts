@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { renderToStaticMarkup } from "react-dom/server";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { SECTORS } from "@/lib/sectors";
 
@@ -13,6 +12,7 @@ export const getApprovedDocuments = createServerFn({ method: "POST" })
     const row = rows[0];
     const allowed = SECTORS.filter((sector) => row.sectors_granted.includes(sector.id));
     const { RestrictedContent } = await import("@/lib/restricted-content.server");
+    const { renderToStaticMarkup } = await import("react-dom/server");
     return {
       name: row.name,
       documents: allowed.map((sector) => ({
