@@ -1,5 +1,6 @@
 # Avaliação acadêmica ETT
 
 - [x] Preparar escopo de estudo, limites de cópia e créditos aos autores dos pareceres.
-- [ ] Liberar acesso nominal somente ao professor — aguarda nome e e-mail informados por Marcos; não emitir link nesta etapa.
-- [ ] Conferir com o professor a abertura e impressão depois da liberação nominal — aguarda identificação e concessão.
+- [x] Autorizar nominalmente Francisco Monticeli Valias Neto (Francisco.monticeli@gmail.com) para os cinco documentos técnicos; entrada exige conta confirmada com esse e-mail.
+- [ ] Publicar a versão atualizada antes de enviar o endereço ao professor; a versão já publicada ainda não contém a proteção nova.
+- [ ] Conferir abertura e impressão na conta do professor depois de sua confirmação de e-mail; depende da ação dele.

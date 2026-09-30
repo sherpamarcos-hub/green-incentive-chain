@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
-import { SectorContent } from "@/components/SectorContent";
-import { getSector, type SectorId } from "@/lib/sectors";
+import { getApprovedDocuments } from "@/lib/access.functions";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/acesso/$token")({
@@ -23,8 +22,7 @@ export const Route = createFileRoute("/acesso/$token")({
 
 interface Row {
   name: string;
-  sectors_granted: string[];
-  status: string;
+  documents: { id: string; title: string; html: string }[];
 }
 
 function AcessoPage() {
@@ -32,17 +30,31 @@ function AcessoPage() {
   const [row, setRow] = useState<Row | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [signedOut, setSignedOut] = useState(false);
+  const [failure, setFailure] = useState(false);
 
   useEffect(() => {
+    let active = true;
     (async () => {
-      const { data } = await supabase.rpc("get_access_by_token", {
-        _token: token,
-      });
-      const first = Array.isArray(data) ? data[0] : data;
-      if (!first) setNotFound(true);
-      else setRow(first as Row);
-      setLoading(false);
+      const { data: user, error } = await supabase.auth.getUser();
+      if (!active) return;
+      if (error || !user.user) {
+        setSignedOut(true);
+        setLoading(false);
+        return;
+      }
+      try {
+        const result = await getApprovedDocuments({ data: { token } });
+        if (!active) return;
+        if (!result) setNotFound(true);
+        else setRow(result as Row);
+      } catch {
+        if (active) setFailure(true);
+      } finally {
+        if (active) setLoading(false);
+      }
     })();
+    return () => { active = false; };
   }, [token]);
 
   if (loading)
@@ -52,22 +64,23 @@ function AcessoPage() {
       </div>
     );
 
+  if (signedOut)
+    return <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-5 text-center"><h1 className="text-xl font-semibold">Identifique-se para consultar os documentos</h1><p>Entre com o mesmo e-mail que recebeu a autorização. O endereço de acesso, sozinho, não abre os materiais.</p><Link to="/auth" search={{ next: `/acesso/${token}` }} className="text-primary underline">Entrar ou criar conta</Link></div>;
+
+  if (failure)
+    return <div className="min-h-screen flex flex-col items-center justify-center gap-3 px-5 text-center"><h1 className="text-xl font-semibold">Não foi possível conferir o acesso</h1><p>Tente atualizar a página em alguns instantes.</p></div>;
+
   if (notFound || !row)
     return (
       <div className="min-h-screen bg-[#fcfbf8] flex items-center justify-center px-4">
         <div className="max-w-md text-center bg-white border border-slate-200 rounded-2xl p-8">
-          <h1 className="text-xl font-bold text-slate-900">Link inválido</h1>
+          <h1 className="text-xl font-bold text-slate-900">Acesso não autorizado</h1>
           <p className="mt-2 text-sm text-slate-600">
-            Este link de acesso não existe, foi revogado ou o pedido ainda não
-            foi aprovado.
+            Este endereço não está aprovado para o e-mail da conta atual, ou a confirmação do e-mail ainda está pendente.
           </p>
         </div>
       </div>
     );
-
-  const granted = (row.sectors_granted as SectorId[])
-    .map((id) => getSector(id))
-    .filter((sector): sector is NonNullable<typeof sector> => sector !== undefined);
 
   return (
     <div className="min-h-screen bg-[#fcfbf8]">
@@ -98,7 +111,7 @@ function AcessoPage() {
           {row.name}
         </h1>
         <p className="mt-2 text-slate-600">
-          Material de estudo do Programa ETT — {granted.length} bloco(s) liberado(s).
+          Material de estudo do Programa ETT — {row.documents.length} bloco(s) liberado(s).
         </p>
         <div className="mt-6 border-l-4 border-primary bg-muted p-4 text-sm leading-relaxed text-foreground">
           <p><strong>Versão para avaliação crítica.</strong> Proposta ainda não validada; parâmetros e exemplos ilustrativos devem ser testados. As referências, afirmações jurídicas, benefícios e participações institucionais requerem verificação independente. A consulta não representa endosso de universidade ou órgão público.</p>
@@ -106,7 +119,7 @@ function AcessoPage() {
         </div>
 
         <div className="mt-10 space-y-8">
-          {granted.map((s) => (
+          {row.documents.map((s) => (
             <section
               key={s.id}
               className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm"
@@ -114,7 +127,7 @@ function AcessoPage() {
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
                 {s.title}
               </h2>
-              <SectorContent id={s.id} />
+              <div dangerouslySetInnerHTML={{ __html: s.html }} />
             </section>
           ))}
         </div>

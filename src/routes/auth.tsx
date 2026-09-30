@@ -29,6 +29,8 @@ function AuthPage() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    const candidate = new URLSearchParams(window.location.search).get("next");
+    const next = candidate && /^\/acesso\/[a-f0-9-]{36}$/i.test(candidate) ? candidate : null;
     setError(null);
     setNotice(null);
     setBusy(true);
@@ -36,16 +38,17 @@ function AuthPage() {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       setBusy(false);
       if (error) return setError(error.message);
-      navigate({ to: "/admin" });
+      if (next) window.location.assign(next);
+      else navigate({ to: "/admin" });
     } else {
       const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: `${window.location.origin}/admin` },
+        options: { emailRedirectTo: `${window.location.origin}/auth${next ? `?next=${encodeURIComponent(next)}` : ""}` },
       });
       setBusy(false);
       if (error) return setError(error.message);
-      setNotice("Conta criada. Faça login abaixo.");
+      setNotice("Confira seu e-mail para confirmar a conta. Depois, entre com o mesmo endereço.");
       setMode("login");
     }
   }
@@ -63,7 +66,7 @@ function AuthPage() {
           {mode === "login" ? "Entrar" : "Criar conta"}
         </h1>
         <p className="mt-1 text-sm text-slate-600">
-          Área restrita ao proponente do sistema ETT.
+          Entre para consultar os documentos autorizados ou gerir os pedidos de acesso.
         </p>
 
         <form onSubmit={submit} className="mt-6 grid gap-3">
