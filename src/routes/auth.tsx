@@ -4,9 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    next: typeof search.next === "string" && /^\/acesso\/[a-f0-9-]{36}$/i.test(search.next) ? search.next : undefined,
-  }),
   head: () => ({
     meta: [
       { title: "Acesso administrativo — ETT" },
@@ -23,7 +20,6 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
-  const { next } = Route.useSearch();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +29,8 @@ function AuthPage() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    const candidate = new URLSearchParams(window.location.search).get("next");
+    const next = candidate && /^\/acesso\/[a-f0-9-]{36}$/i.test(candidate) ? candidate : null;
     setError(null);
     setNotice(null);
     setBusy(true);
@@ -68,7 +66,7 @@ function AuthPage() {
           {mode === "login" ? "Entrar" : "Criar conta"}
         </h1>
         <p className="mt-1 text-sm text-slate-600">
-          {next ? "Identificação para consulta individual de documentos autorizados." : "Área restrita ao proponente do Programa ETT."}
+          Entre para consultar os documentos autorizados ou gerir os pedidos de acesso.
         </p>
 
         <form onSubmit={submit} className="mt-6 grid gap-3">
