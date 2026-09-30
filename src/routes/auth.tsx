@@ -4,6 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
 
 export const Route = createFileRoute("/auth")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    next: typeof search.next === "string" && /^\/acesso\/[a-f0-9-]{36}$/i.test(search.next) ? search.next : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Acesso administrativo — ETT" },
@@ -20,6 +23,7 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,16 +40,17 @@ function AuthPage() {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       setBusy(false);
       if (error) return setError(error.message);
-      navigate({ to: "/admin" });
+      if (next) window.location.assign(next);
+      else navigate({ to: "/admin" });
     } else {
       const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: `${window.location.origin}/admin` },
+        options: { emailRedirectTo: `${window.location.origin}/auth${next ? `?next=${encodeURIComponent(next)}` : ""}` },
       });
       setBusy(false);
       if (error) return setError(error.message);
-      setNotice("Conta criada. Faça login abaixo.");
+      setNotice("Confira seu e-mail para confirmar a conta. Depois, entre com o mesmo endereço.");
       setMode("login");
     }
   }
@@ -63,7 +68,7 @@ function AuthPage() {
           {mode === "login" ? "Entrar" : "Criar conta"}
         </h1>
         <p className="mt-1 text-sm text-slate-600">
-          Área restrita ao proponente do sistema ETT.
+          {next ? "Identificação para consulta individual de documentos autorizados." : "Área restrita ao proponente do Programa ETT."}
         </p>
 
         <form onSubmit={submit} className="mt-6 grid gap-3">

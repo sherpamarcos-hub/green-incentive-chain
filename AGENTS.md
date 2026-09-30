@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - O convite acadêmico é uma minuta pública sem documentos restritos; o acesso individual continua sujeito à aprovação separada, para evitar liberação antes da identificação do professor.
+- Documentos restritos são renderizados exclusivamente no servidor após confirmação de e-mail e aprovação individual; não importá-los no código público para evitar exposição por arquivos do navegador.

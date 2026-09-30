@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { EttLogo } from "@/components/EttLogo";
-import { SectorContent } from "@/components/SectorContent";
 import { getApprovedDocuments } from "@/lib/access.functions";
 import { Button } from "@/components/ui/button";
 
